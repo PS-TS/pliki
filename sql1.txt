@@ -35,7 +35,7 @@ FOREIGN KEY (wlasciciel) REFERENCES postac(id_postaci) ON DELETE SET NULL);
 
 ALTER TABLE izba ADD kolor VARCHAR(20) DEFAULT "czarny" AFTER metraz;
 
-
+--zrobione przez PS--
 
 INSERT INTO izba (adres_budynku,nazwa_izby,metraz,wlasciciel)VALUES("Toporowa5","spizarnia",40,1);
 
