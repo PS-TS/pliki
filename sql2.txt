@@ -1,1 +1,1 @@
-
+DELETE FROM postac WHERE nazwa != "Bjorn" AND rodzaj="wiking" ORDER BY wiek DESC LIMIT 2;
