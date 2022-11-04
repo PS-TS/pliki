@@ -8,3 +8,10 @@ ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
 
 ALTER TABLE postac MODIFY id_postaci INT NOT NULL;
 ALTER TABLE postac DROP PRIMARY KEY;
+
+ALTER TABLE postac ADD pesel VARCHAR(11);
+nie miałem pojęcia jak to zrobić więc powrzucałem losowe wartości
+np. UPDATE postac SET pesel="11111111111" WHERE id=1;
+ALTER TABLE postac ADD PRIMARY KEY (pesel);
+ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
+INSERT INTO postac (pesel,nazwa,id_postaci) VALUES (77777777777,"Gertruda Nieszczera",7);
