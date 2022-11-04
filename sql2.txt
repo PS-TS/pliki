@@ -1,1 +1,10 @@
 DELETE FROM postac WHERE nazwa != "Bjorn" AND rodzaj="wiking" ORDER BY wiek DESC LIMIT 2;
+
+ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+
+//być może dodatkowo ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_3;
+
+ALTER TABLE postac MODIFY id_postaci INT NOT NULL;
+ALTER TABLE postac DROP PRIMARY KEY;
