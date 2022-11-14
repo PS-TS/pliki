@@ -40,3 +40,4 @@ int main()
     wnajw(tab, n);
 }
 
+//żle działa
