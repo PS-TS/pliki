@@ -30,3 +30,8 @@ ALTER TABLE marynarz DROP FOREIGN KEY marynarz_ibfk_1;
 ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
 ALTER TABLE postac ADD FOREIGN KEY (statek_nazwa) REFERENCES statek(nazwa_statku) ON DELETE SET NULL;
 DELETE FROM statek WHERE nazwa_statku="Naglfaar";
+DELETE FROM postac WHERE rodzaj="wiking" AND nazwa!="Bjorn" LIMIT 1;
+DELETE FROM statek;
+ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+DROP TABLE statek;
+INSERT INTO zwierz(zwierz.nazwa, zwierz.wiek) SELECT postac.nazwa,postac.wiek FROM postac WHERE rodzaj="ptak" OR rodzaj="waz";
