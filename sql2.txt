@@ -14,4 +14,4 @@ nie miałem pojęcia jak to zrobić więc powrzucałem losowe wartości
 np. UPDATE postac SET pesel="11111111111" WHERE id=1;
 ALTER TABLE postac ADD PRIMARY KEY (pesel);
 ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
-INSERT INTO postac (pesel,nazwa,id_postaci) VALUES (77777777777,"Gertruda Nieszczera",7);
+INSERT INTO postac (pesel,nazwa,id_postaci,rodzaj) VALUES (77777777777,"Gertruda Nieszczera",7,"syrena");
