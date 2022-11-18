@@ -20,3 +20,13 @@ UPDATE postac SET statek_nazwa="Naglfaar" WHERE nazwa LIKE '%a%';
 UPDATE statek SET max_ladownosc=max_ladownosc*0.7 WHERE YEAR(data_wodowania) BETWEEN 1900 AND 2001;
 SELECT IF(wiek<1000,"jest","nie ma") FROM postac;
 
+ALTER TABLE postac MODIFY rodzaj ENUM("wiking","ptak","kobieta","syrena","waz");
+INSERT INTO postac(nazwa,rodzaj,id_postaci,pesel) VALUES ("Loko","waz",8,88888888888);
+CREATE TABLE marynarz AS SELECT * FROM postac WHERE statek_nazwa IS NOT NULL;
+ALTER TABLE marynarz ADD PRIMARY KEY(pesel);
+ALTER TABLE marynarz ADD FOREIGN KEY (statek_nazwa) REFERENCES statek(nazwa_statku);
+
+ALTER TABLE marynarz DROP FOREIGN KEY marynarz_ibfk_1;
+ALTER TABLE postac DROP FOREIGN KEY postac_ibfk_1;
+ALTER TABLE postac ADD FOREIGN KEY (statek_nazwa) REFERENCES statek(nazwa_statku) ON DELETE SET NULL;
+DELETE FROM statek WHERE nazwa_statku="Naglfaar";
