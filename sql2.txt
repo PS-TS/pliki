@@ -15,3 +15,8 @@ np. UPDATE postac SET pesel="11111111111" WHERE id=1;
 ALTER TABLE postac ADD PRIMARY KEY (pesel);
 ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
 INSERT INTO postac (pesel,nazwa,id_postaci,rodzaj) VALUES (77777777777,"Gertruda Nieszczera",7,"syrena");
+
+UPDATE postac SET statek_nazwa="Naglfaar" WHERE nazwa LIKE '%a%';
+UPDATE statek SET max_ladownosc=max_ladownosc*0.7 WHERE YEAR(data_wodowania) BETWEEN 1900 AND 2001;
+SELECT IF(wiek<1000,"jest","nie ma") FROM postac;
+
