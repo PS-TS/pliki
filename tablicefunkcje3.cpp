@@ -12,11 +12,11 @@ int najw(int tabl[]) {
     return wynik;
 }
 
-int wnajw(int tabl[], int x) {
+int wnajw(int tabl[], int x, int p) {
     
-	int max = 0, maxi=0, zmiana;
+	int max = 0, maxi=0;
     
-	for (int i = 0; i <= x; i++){
+	for (int i = 0; i < x; i++){
         
 		for (int j = i; j < 20; j++)
             if (tabl[j] > max){
@@ -29,7 +29,7 @@ int wnajw(int tabl[], int x) {
         maxi = i+1;           //reset zmiennych
         max = tabl[i+1];
     }
-    return tabl[x];		//wydanie konkretnego elementu
+    return tabl[p];		//wydanie konkretnego elementu
 }
 
 int main()
@@ -47,5 +47,5 @@ int main()
     //funkcja wykonuje sie tyle razy ile potrzeba najwiekszych liczb
     
     for (int i = 0; i < n; i++)
-    cout<<wnajw(tab, i)<<endl;
+    cout<<wnajw(tab, n, i)<<endl;
 }
