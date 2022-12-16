@@ -15,3 +15,13 @@ SELECT kreatura.nazwa, IF(COUNT(uczestnicy.id_uczestnika),"bral udzial w wyprawi
 
 SELECT wyprawa.nazwa, SUM(LENGTH(etapy_wyprawy.dziennik)) FROM wyprawa INNER JOIN etapy_wyprawy ON etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy GROUP BY wyprawa.nazwa HAVING SUM(LENGTH(etapy_wyprawy.dziennik))<400;
 SELECT wyprawa.nazwa, AVG(tabela.wagajednego) FROM wyprawa INNER JOIN uczestnicy ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy INNER JOIN (SELECT id_uczestnika, SUM(ekwipunek.ilosc*zasob.waga) AS wagajednego FROM uczestnicy INNER JOIN ekwipunek ON uczestnicy.id_uczestnika=ekwipunek.idKreatury  INNER JOIN zasob ON ekwipunek.idZasobu=zasob.idZasobu  GROUP BY uczestnicy.id_uczestnika) tabela ON tabela.id_uczestnika=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
+
+////////////////////////jeszcze nie działa///////////////////////////////////////////
+SELECT kreatura.nazwa, DATEDIFF(kreatura.dataUr, wyprawa.data_rozpoczecia) 
+FROM kreatura 
+INNER JOIN uczestnicy ON uczestnicy.id_uczestnika=kreatura.idKreatury 
+INNER JOIN wyprawa ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy 
+INNER JOIN etapy_wyprawy ON wyprawa.id_wyprawy=etapy_wyprawy.idWyprawy 
+INNER JOIN (SELECT id_sektora FROM sektor WHERE nazwa="Chata dziadka") tabela 
+ON etapy_wyprawy.sektor=tabela.id_sektora 
+GROUP BY kreatura.nazwa;
