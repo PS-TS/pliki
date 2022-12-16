@@ -12,3 +12,5 @@ SELECT etapy_wyprawy.idEtapu, sektor.nazwa, kreatura.nazwa FROM wyprawa INNER JO
 
 SELECT sektor.nazwa, COUNT(etapy_wyprawy.sektor) FROM sektor LEFT JOIN etapy_wyprawy ON etapy_wyprawy.sektor=sektor.id_sektora GROUP BY sektor.nazwa;
 SELECT kreatura.nazwa, IF(COUNT(uczestnicy.id_uczestnika),"bral udzial w wyprawie","nie bral udzialu w wyprawie") AS wynik FROM kreatura LEFT JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY kreatura.nazwa;
+
+SELECT wyprawa.nazwa, SUM(LENGTH(etapy_wyprawy.dziennik)) FROM wyprawa INNER JOIN etapy_wyprawy ON etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy GROUP BY wyprawa.nazwa HAVING SUM(LENGTH(etapy_wyprawy.dziennik))<400;
