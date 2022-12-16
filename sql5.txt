@@ -5,3 +5,6 @@ CREATE TABLE etapy_wyprawy SELECT * FROM wikingowie.etapy_wyprawy;
 CREATE TABLE sektor SELECT * FROM wikingowie.sektor;
 CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
 SELECT nazwa FROM kreatura WHERE nazwa NOT IN(SELECT DISTINCT kreatura.nazwa FROM kreatura INNER JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika);
+SELECT wyprawa.nazwa, SUM(ekwipunek.ilosc) FROM wyprawa INNER JOIN uczestnicy ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy INNER JOIN ekwipunek ON uczestnicy.id_uczestnika=ekwipunek.idKreatury GROUP BY wyprawa.nazwa;
+
+SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika) AS liczba, GROUP_CONCAT(kreatura.nazwa) FROM wyprawa NATURAL JOIN uczestnicy INNER JOIN kreatura ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
