@@ -1,3 +1,6 @@
 TRUNCATE kreatura;
 INSERT INTO kreatura SELECT * FROM wikingowie.kreatura;
 CREATE TABLE uczestnicy SELECT * FROM wikingowie.uczestnicy;
+CREATE TABLE etapy_wyprawy SELECT * FROM wikingowie.etapy_wyprawy;
+CREATE TABLE sektor SELECT * FROM wikingowie.sektor;
+CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
