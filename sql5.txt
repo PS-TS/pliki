@@ -1,1 +1,3 @@
-
+TRUNCATE kreatura;
+INSERT INTO kreatura SELECT * FROM wikingowie.kreatura;
+CREATE TABLE uczestnicy SELECT * FROM wikingowie.uczestnicy;
