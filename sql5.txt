@@ -4,3 +4,4 @@ CREATE TABLE uczestnicy SELECT * FROM wikingowie.uczestnicy;
 CREATE TABLE etapy_wyprawy SELECT * FROM wikingowie.etapy_wyprawy;
 CREATE TABLE sektor SELECT * FROM wikingowie.sektor;
 CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
+SELECT nazwa FROM kreatura WHERE nazwa NOT IN(SELECT DISTINCT kreatura.nazwa FROM kreatura INNER JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika);
