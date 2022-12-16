@@ -9,3 +9,5 @@ SELECT wyprawa.nazwa, SUM(ekwipunek.ilosc) FROM wyprawa INNER JOIN uczestnicy ON
 
 SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika) AS liczba, GROUP_CONCAT(kreatura.nazwa) FROM wyprawa NATURAL JOIN uczestnicy INNER JOIN kreatura ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
 SELECT etapy_wyprawy.idEtapu, sektor.nazwa, kreatura.nazwa FROM wyprawa INNER JOIN etapy_wyprawy ON wyprawa.id_wyprawy=etapy_wyprawy.idWyprawy INNER JOIN sektor ON sektor.id_sektora=etapy_wyprawy.sektor INNER JOIN kreatura ON wyprawa.kierownik=kreatura.idKreatury ORDER BY wyprawa.data_rozpoczecia ASC, etapy_wyprawy.kolejnosc ASC;
+
+SELECT sektor.nazwa, COUNT(etapy_wyprawy.sektor) FROM sektor LEFT JOIN etapy_wyprawy ON etapy_wyprawy.sektor=sektor.id_sektora GROUP BY sektor.nazwa;
