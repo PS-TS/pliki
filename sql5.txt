@@ -1,23 +1,50 @@
-TRUNCATE kreatura;
-INSERT INTO kreatura SELECT * FROM wikingowie.kreatura;
-CREATE TABLE uczestnicy SELECT * FROM wikingowie.uczestnicy;
-CREATE TABLE etapy_wyprawy SELECT * FROM wikingowie.etapy_wyprawy;
-CREATE TABLE sektor SELECT * FROM wikingowie.sektor;
-CREATE TABLE wyprawa SELECT * FROM wikingowie.wyprawa;
-SELECT nazwa FROM kreatura WHERE nazwa NOT IN(SELECT DISTINCT kreatura.nazwa FROM kreatura INNER JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika);
-SELECT wyprawa.nazwa, SUM(ekwipunek.ilosc) FROM wyprawa INNER JOIN uczestnicy ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy INNER JOIN ekwipunek ON uczestnicy.id_uczestnika=ekwipunek.idKreatury GROUP BY wyprawa.nazwa;
+CREATE TABLE kreatura_kopia AS SELECT * FROM wikingowie.kreatura;
+CREATE TABLE uczestnicy AS SELECT * FROM wikingowie.uczestnicy;
+CREATE TABLE etapy_wyprawy AS SELECT * FROM wikingowie.etapy_wyprawy;
+CREATE TABLE sektor AS SELECT * FROM wikingowie.sektor;
+CREATE TABLE wyprawa AS SELECT * FROM wikingowie.wyprawa;
+SELECT nazwa, id_uczestnika FROM kreatura_kopia 
+	LEFT JOIN uczestnicy ON idKreatury = id_uczestnika 
+	WHERE id_uczestnika IS NULL;
+SELECT wyprawa.nazwa, SUM(ekwipunek.ilosc) FROM uczestnicy 
+	JOIN ekwipunek ON ekwipunek.idKreatury = uczestnicy.id_uczestnika
+	RIGHT JOIN wyprawa ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy
+	GROUP BY wyprawa.nazwa;
 
-SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika) AS liczba, GROUP_CONCAT(kreatura.nazwa) FROM wyprawa NATURAL JOIN uczestnicy INNER JOIN kreatura ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
-SELECT etapy_wyprawy.idEtapu, sektor.nazwa, kreatura.nazwa FROM wyprawa INNER JOIN etapy_wyprawy ON wyprawa.id_wyprawy=etapy_wyprawy.idWyprawy INNER JOIN sektor ON sektor.id_sektora=etapy_wyprawy.sektor INNER JOIN kreatura ON wyprawa.kierownik=kreatura.idKreatury ORDER BY wyprawa.data_rozpoczecia ASC, etapy_wyprawy.kolejnosc ASC;
+SELECT wyprawa.nazwa, COUNT(uczestnicy.id_uczestnika), GROUP_CONCAT(kreatura_kopia.nazwa) FROM wyprawa 
+	JOIN uczestnicy ON uczestnicy.id_wyprawy = wyprawa.id_wyprawy 
+	JOIN kreatura_kopia ON uczestnicy.id_uczestnika = kreatura_kopia.idKreatury 
+	GROUP BY wyprawa.nazwa;
+SELECT idEtapu, wyprawa.nazwa, sektor.id_sektora, etapy_wyprawy.dziennik FROM wyprawa
+	JOIN etapy_wyprawy ON wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy
+	JOIN sektor ON etapy_wyprawy.sektor = sektor.id_sektora
+	ORDER BY data_rozpoczecia, etapy_wyprawy.idWyprawy, etapy_wyprawy.kolejnosc;
 
-SELECT sektor.nazwa, COUNT(etapy_wyprawy.sektor) FROM sektor LEFT JOIN etapy_wyprawy ON etapy_wyprawy.sektor=sektor.id_sektora GROUP BY sektor.nazwa;
-SELECT kreatura.nazwa, IF(COUNT(uczestnicy.id_uczestnika),"bral udzial w wyprawie","nie bral udzialu w wyprawie") AS wynik FROM kreatura LEFT JOIN uczestnicy ON kreatura.idKreatury=uczestnicy.id_uczestnika GROUP BY kreatura.nazwa;
+SELECT sektor.nazwa, IFNULL(COUNT(idEtapu), 0) FROM sektor
+	LEFT JOIN etapy_wyprawy ON sektor.id_sektora = etapy_wyprawy.sektor
+	GROUP BY sektor.nazwa;
+SELECT CASE
+    	WHEN sub.wyprawy <= 0 THEN CONCAT(sub.nazwa, " nie bral(a) udzalu w zadnej wyprawie.")
+	WHEN sub.wyprawy = 1 THEN CONCAT(sub.nazwa, " bral(a) udzal w 1 wyprawie.")
+    	ELSE CONCAT(sub.nazwa, " bral(a) udzal w ", sub.wyprawy, " wyprawach.")
+    	END AS zdanie
+    	FROM (SELECT kreatura_kopia.nazwa, COUNT(uczestnicy.id_wyprawy) AS wyprawy FROM uczestnicy 
+		RIGHT JOIN kreatura_kopia ON uczestnicy.id_uczestnika = kreatura_kopia.idKreatury 
+		GROUP BY kreatura_kopia.nazwa) 
+	AS sub;
+	
+SELECT wyprawa.nazwa, SUM(CHAR_LENGTH(etapy_wyprawy.dziennik)) FROM wyprawa 
+	JOIN etapy_wyprawy ON wyprawa.id_wyprawy = etapy_wyprawy.idWyprawy 
+	GROUP BY wyprawa.id_wyprawy 
+	HAVING SUM(CHAR_LENGTH(etapy_wyprawy.dziennik)) < 400;
+SELECT wyprawa.nazwa, AVG(zasob.ilosc * zasob.waga) AS "Srednia waga zasobow na postac" FROM wyprawa
+	JOIN uczestnicy ON wyprawa.id_wyprawy = uczestnicy.id_wyprawy
+	JOIN ekwipunek ON uczestnicy.id_uczestnika = ekwipunek.idKreatury
+	JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu
+	GROUP BY nazwa;
 
-SELECT wyprawa.nazwa, SUM(LENGTH(etapy_wyprawy.dziennik)) FROM wyprawa INNER JOIN etapy_wyprawy ON etapy_wyprawy.idWyprawy=wyprawa.id_wyprawy GROUP BY wyprawa.nazwa HAVING SUM(LENGTH(etapy_wyprawy.dziennik))<400;
-SELECT wyprawa.nazwa, AVG(tabela.wagajednego) FROM wyprawa INNER JOIN uczestnicy ON wyprawa.id_wyprawy=uczestnicy.id_wyprawy INNER JOIN (SELECT id_uczestnika, SUM(ekwipunek.ilosc*zasob.waga) AS wagajednego FROM uczestnicy INNER JOIN ekwipunek ON uczestnicy.id_uczestnika=ekwipunek.idKreatury  INNER JOIN zasob ON ekwipunek.idZasobu=zasob.idZasobu  GROUP BY uczestnicy.id_uczestnika) tabela ON tabela.id_uczestnika=uczestnicy.id_uczestnika GROUP BY wyprawa.nazwa;
-
-SELECT kreatura.nazwa, obecnosc.nazwa, DATEDIFF(obecnosc.data_rozpoczecia, kreatura.dataUr) AS 'wiek w dniach' FROM uczestnicy
-  JOIN kreatura ON uczestnicy.id_uczestnika = kreatura.idKreatury 
+SELECT kreatura_kopia.nazwa, obecnosc.nazwa, DATEDIFF(obecnosc.data_rozpoczecia, kreatura_kopia.dataUr) AS 'wiek w dniach' FROM uczestnicy
+	JOIN kreatura_kopia ON uczestnicy.id_uczestnika = kreatura_kopia.idKreatury 
 	JOIN (SELECT wyprawa.nazwa, wyprawa.id_wyprawy, etapy_wyprawy.sektor, wyprawa.data_rozpoczecia FROM etapy_wyprawy
 		JOIN wyprawa ON etapy_wyprawy.idWyprawy = wyprawa.id_wyprawy
 		WHERE sektor = 7) 
