@@ -1,5 +1,5 @@
 usunąc pliki z LaTeXa?
 
-nie
+usuwaj
 
 usun
