@@ -15,4 +15,22 @@ R=[1:6].^2 - macierz [1 4 9 16 25 36]
 kropka odpowiada za operacje na każdym elemencie a nie na całej macierzy
 Iloczyn skalarny: P*R'
 
+%pi = π
+~ = zaprzeczenie
+%T = prawda (1)
+%F = fałsz (zero)
+& = i np A /\ B (nie mam jak napisać)
+| = v np A v B
+A <= B - A|~B
+<=> - ==
+
+for n=1:100  - pętla wykonuje się 100 razy
+instrukcje
+end
+// w tej pętli automatycznie wykonuje się n++
+
+wykresy
+x=[0:0.1:2] - dziedzina
+y=%e^x - wartości
+
 
