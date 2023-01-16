@@ -33,4 +33,12 @@ wykresy
 x=[0:0.1:2] - dziedzina
 y=%e^x - wartości
 
+plot(x,y,'kolor-litera-angielski','szerokość,linii')
+plot(x,y,'r','LineWidth',3)
+xgrid
+xlabel('dziedzina')
+ylabel('zbiór wartości')
+
+title('tytuł')
+legend('legenda','drugaczesc')
 
