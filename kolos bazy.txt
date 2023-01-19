@@ -25,3 +25,4 @@ e)
 f)
 SELECT kraj.nazwa FROM kraj LEFT JOIN miejsce_zawodow ON kraj.idKraju = miejsce_zawodow.idKraju WHERE miejsce_zawodow.idKraju IS NULL
 g)
+SELECT kraj, miejsca FROM ( SELECT kraj.nazwa AS kraj, COUNT(idMiejsca) AS miejsca FROM kraj INNER JOIN miejsce_zawodow ON kraj.idkraju = miejsce_zawodow.idKraju GROUP BY kraj.nazwa ) AS kw WHERE miejsca=1 ORDER BY kraj ASC;
