@@ -17,7 +17,7 @@ select * from zawodnik where klub is not null and year(data_ur) BETWEEN 1985 and
 b)
 select kraj,COUNT(zawodnik) from zawodnik right join kraj on zawodnik.idKraju=kraj.idKraju where year(data_ur) BETWEEN 1990 and 1999 GROUP by kraj;
 c)
-select avg(wynik)from wyniki where count(idKonkurecji)>=4;    //po warunku "where" nie można użyć "count", trzeba użyć "having"
+select avg(wynik)from wyniki where HAVING count(idKonkurecji)>=4;   
 
 SELECT AVG(wyniki.wynik), konkurencja.nazwaKonkurencji FROM wyniki INNER JOIN konkurencja ON wyniki.idKonkurencji = konkurencja.idKonkurencji GROUP BY wyniki.idKonkurencji HAVING COUNT(wyniki.idZawodnika) >= 4;
 d)
