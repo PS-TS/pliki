@@ -4,7 +4,7 @@ b)
 CREATE TABLE uzytkownik(id_uzytkownika int primary key not null,rodzaj ENUM("pracownik","prezes","rodzina")DEFAULT "pracownik",imie varchar(32)not null,nazwisko varchar(20)not null,zarobki int unsigned default 2000,dataur date,id_benefitu int, FOREIGN key (id_benefitu)
  REFERENCES benefit(id_benefitu) ON DELETE CASCADE); 
 2.
-INSERT INTO benefit(id_benefitu,benefit.nazwa,benefit.cena,rodzaj,opis)SELECT zasob.idZasobu,zasob.nazwa,"sport",NULL from wikingowie.zasob;
+INSERT INTO benefit(id_benefitu,benefit.nazwa,benefit.cena,rodzaj,opis)SELECT zasob.idZasobu,zasob.nazwa,zasob.waga,"sport",NULL from wikingowie.zasob;
 3.
 alter table uzytkownik MODIFY rodzaj ENUM("pracownik","prezes","rodzina") DEFAULT "prezes"; 
 4.
