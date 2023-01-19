@@ -23,5 +23,5 @@ select group_concat(imie, nazwisko) from zawody group by year(data_ur);
 e)
 
 f)
-
+select nazwa from kraj join miejsce_zawodow on miejsce_zawodow.idKraju=kraj.idKraju where miejsce_zawodow.idKraju null;
 g)
