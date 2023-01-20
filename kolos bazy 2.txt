@@ -19,3 +19,8 @@ data_ur DATE, FOREIGN KEY (id_stajni) REFERENCES Stajnia (id_stajni), PRIMARY KE
 ALTER TABLE konie ADD PRIMARY KEY (id_stajni, imie);
 8)
 a)SELECT CONCAT(adres," ",nazwa) FROM daneadresowe WHERE nazwa LIKE '%ma%' ORDER BY nazwa;
+b)SELECT SUM(koszty_wysyłki) FROM cennik 
+NATURAL JOIN wysylki 
+NATURAL JOIN zlecenia 
+NATURAL JOIN daneadresowe 
+GROUP BY daneadresowe.adresat;
