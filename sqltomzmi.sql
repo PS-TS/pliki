@@ -41,7 +41,7 @@ WHERE idklienta NOT IN (SELECT DISTINCT idklienta FROM bilet);
 SELECT film.tytul, AVG(bilet.cena) FROM film NATURAL JOIN bilet
 GROUP BY film.tytul HAVING COUNT(bilet.idbiletu)>8;
 
-SELECT pracownik.nazwisko, COUNT(sala.liczbamiejsc), COUNT(bilet.idbiletu) 
+SELECT pracownik.nazwisko, sala.liczbamiejsc, COUNT(bilet.idbiletu) 
 FROM pracownik NATURAL JOIN sala_pilnowanie NATURAL JOIN sala
 NATURAL JOIN bilet
 GROUP BY DATE(bilet.godzinarozpoczecia) 
