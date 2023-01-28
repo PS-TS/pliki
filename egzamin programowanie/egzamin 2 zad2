@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+int main() {
+	int a;
+	int b;
+	int c;
+	cin >> a;
+	cin >> b;
+	cin	>> c;
+	cout << a << " " << b << " " << c;
+	int x = a * a + b * b;
+	int y = c * c;
+
+	if (x==y) {
+		cout << "spelniaja twierdzenie pitagorasa";
+	}
+	else {
+		cout << "nie spelniaja";
+	}
+}
