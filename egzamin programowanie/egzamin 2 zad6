@@ -1,0 +1,16 @@
+#include<iosteram>
+using namespace std;
+void sumakwadratow(int n) {
+	for (int i = 1; i*i <= n; i++) {
+		for (int a = i; a*a <= n; a++) {
+			if (i * i + a * a == n) {
+				cout << i << " * " << i << " + " << a << " * " << a << endl;
+				
+			}
+		}
+	}
+}
+int main() {
+	int n=25;
+	sumakwadratow(n);
+}
