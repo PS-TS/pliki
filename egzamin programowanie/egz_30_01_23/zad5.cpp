@@ -17,7 +17,7 @@ int main()
     vector<int>wektor2;
     for (int i = wektor.size(); i > 0; i--)
     {
-        wektor2.push_back(i);
+        wektor2.push_back(wektor[i-1]);
     }
     return 0;
 }
