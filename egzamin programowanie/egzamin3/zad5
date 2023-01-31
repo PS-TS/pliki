@@ -1,0 +1,14 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+	vector<int>v;
+	int r;
+	for (int i = 0; i < 10; i++) {
+		cin >> r;
+		v.push_back(r * r);
+	}
+	for (auto i = v.begin(); i < v.end(); i++) {
+		cout << *i;
+	}
+}
