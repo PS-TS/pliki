@@ -1,3 +1,6 @@
+// nie wiem czy dobrze zrozumiałam polecenie
+
+
 #include <iostream>
 using namespace std;
 
