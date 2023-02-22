@@ -1,0 +1,26 @@
+2 kolos
+4)
+a)CREATE TABLE Stajnia(id_stajni int AUTO_INCREMENT,
+nazwa varchar(50) NOT NULL,
+data_zalozenia DATE NOT NULL,
+wielkosc enum("mala","srednia","duza") default "srednia",
+zarzadca varchar(40) NOT NULL, PRIMARY KEY(id_stajni));
+
+b)CREATE TABLE Konie(nr_identyfikacyjny varchar(11) NOT NULL,
+imie varchar(20) NOT NULL, 
+id_stajni int,wiek int unsigned,
+rasa varchar(20) NOT NULL,
+data_ur DATE, FOREIGN KEY (id_stajni) REFERENCES Stajnia (id_stajni), PRIMARY KEY(nr_identyfikacyjny) ON DELETE SET NULL);
+
+5)INSERT INTO stajnia(nazwa, datazalozenia, zalozyciel) SELECT (kreatura.nazwa, kreatura.dataUr, "rejent") FROM wikingowie.kreatura;
+
+6) ALTER TABLE stajnia MODIFY zarzadca varchar(40) DEFAULT "rejent";
+7)ALTER TABLE konie DROP PRIMARY KEY;
+ALTER TABLE konie ADD PRIMARY KEY (id_stajni, imie);
+8)
+a)SELECT CONCAT(adres," ",nazwa) FROM daneadresowe WHERE nazwa LIKE '%ma%' ORDER BY nazwa;
+b)SELECT SUM(koszty_wysyłki) FROM cennik 
+NATURAL JOIN wysylki 
+NATURAL JOIN zlecenia 
+NATURAL JOIN daneadresowe 
+GROUP BY daneadresowe.adresat;
