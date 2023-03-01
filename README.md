@@ -1,1 +1,1 @@
-co usunąć co zostawić @everyone?
+ale wiecie że możecie sobie ustawić customowe ikonki?
