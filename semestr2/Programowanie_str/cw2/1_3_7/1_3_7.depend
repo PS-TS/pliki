@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1677764695 source:d:\169391\psc169391\lab2\1_3_7\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
+1677861850 source:d:\github\psc169391\lab2\1_3_7\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+
