@@ -1,0 +1,251 @@
+
+rekurencja zmienne statyczne
+2.2.17
+#include <stdio.h>
+#include <stdlib.h>
+void zlicz(){
+static int ile = 0;
+ile++;
+printf("funkcja zostala wywolana %d razy\n", ile);
+
+}
+
+int main()
+{ zlicz();
+ zlicz();
+ zlicz();
+ zlicz();
+ zlicz();
+ zlicz();
+ zlicz();
+ zlicz();
+
+
+
+}
+
+
+modyfikacja
+#include <stdio.h>
+#include <stdlib.h>
+void zlicz(int n){
+static int ile = 0;
+ile+=n;
+printf("funkcja zostala wywolana do tej pory na argumentach o sumie %d \n", ile);
+
+}
+
+int main()
+{ zlicz(5);
+ zlicz(7);
+ zlicz(8);
+ zlicz(1);
+ zlicz(3);
+ zlicz(7);
+ zlicz(15);
+ zlicz(4);
+}
+
+2.2.21
+#include <stdio.h>
+#include <stdlib.h>
+int wyrazCiagu(int n){
+if(n==0){
+    return 1;
+}
+return 2*wyrazCiagu(n-1)+5;
+}
+
+int main()
+{
+    printf("wyraz ciagu %d\n", wyrazCiagu(0));
+    printf("wyraz ciagu %d\n", wyrazCiagu(1));
+    printf("wyraz ciagu %d\n", wyrazCiagu(2));
+
+}
+
+2.2.22
+#include <stdio.h>
+#include <stdlib.h>
+int wyrazCiagu(int n){
+if(n==0){
+    return 1;
+}
+else if(n==1){
+    return 1;
+}
+return wyrazCiagu(n-1)+2*wyrazCiagu(n-2)+3;
+}
+
+int main()
+{
+    printf("wyraz ciagu %d\n", wyrazCiagu(0));
+    printf("wyraz ciagu %d\n", wyrazCiagu(1));
+    printf("wyraz ciagu %d\n", wyrazCiagu(2));
+    printf("wyraz ciagu %d\n", wyrazCiagu(3));
+    printf("wyraz ciagu %d\n", wyrazCiagu(4));
+    printf("wyraz ciagu %d\n", wyrazCiagu(5));
+    printf("wyraz ciagu %d\n", wyrazCiagu(6));
+    printf("wyraz ciagu %d\n", wyrazCiagu(7));
+    printf("wyraz ciagu %d\n", wyrazCiagu(8));
+    printf("wyraz ciagu %d\n", wyrazCiagu(9));
+
+
+}
+ciag ,,tribonacciego''
+
+#include <stdio.h>
+#include <stdlib.h>
+int ciagFibonacciego(int n){
+if(n==0){
+    return 1;
+}
+else if(n==1){
+    return 1;
+}
+else if(n==2){
+    return 1;
+}
+return ciagFibonacciego(n-1)+ciagFibonacciego(n-2)+ ciagFibonacciego(n-3);
+}
+
+int main()
+{
+    printf("wyraz ciagu %d\n", ciagFibonacciego(0));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(1));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(2));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(3));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(4));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(5));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(6));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(7));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(8));
+    printf("wyraz ciagu %d\n", ciagFibonacciego(9));
+
+
+}
+
+modyfikacja
+#include <stdio.h>
+#include <stdlib.h>
+int ciagFibonacciego(int n){
+if(n==0){
+    return 1;
+}
+else if(n==1){
+    return 1;
+}
+else if(n==2){
+    return 1;
+}
+
+return ciagFibonacciego(n-1)+ciagFibonacciego(n-2)+ ciagFibonacciego(n-3);
+}
+int ciagFibonacciegoPodzielnePrzezTrzy(int n){
+int i =0;
+int j=0;
+while(i<n){
+    if(ciagFibonacciego(j)%3==0){
+        i++;
+    }
+    j++;
+}
+return ciagFibonacciego(j-1);
+}
+
+int main()
+{   for( int i =1; i<10; i++){
+    printf("%d wyraz ciagu %d\n", i, ciagFibonacciegoPodzielnePrzezTrzy(i));
+    }
+
+}
+
+2.2.24
+#include <stdio.h>
+#include <stdlib.h>
+int wyraz(int n){
+if(n==0){
+    return 1;
+}
+else if(n==1){
+    return 1;
+}
+return wyraz(n-1)+wyraz(n-1);
+}
+
+int main()
+{
+for(int i =0; i<10; i++){
+    printf("%d wyraz to: %d \n", i, wyraz(i));
+}
+}
+
+druga wersja
+#include <stdio.h>
+#include <stdlib.h>
+int wyraz(int n){
+    if(n==0){
+        return 1;
+    }
+
+int wynik=0;
+for(int i = 0; i<n; i++)
+{ wynik = wynik+ wyraz(i);}
+return wynik;
+}
+
+int main()
+{
+for(int i =0; i<10; i++){
+    printf("%d wyraz to: %d \n", i, wyraz(i));
+}
+}
+
+2.2.25
+#include <stdio.h>
+#include <stdlib.h>
+int wyraz(int n){
+    if(n==0){
+        return 1;
+    }
+
+int wynik=0;
+for(int i = 0; i<n; i++)
+{ wynik = wynik+ wyraz(i);}
+return wynik;
+}
+
+int main()
+{
+for(int i =0; i<10; i++){
+    printf("%d wyraz to: %d \n", i, wyraz(i));
+}
+}
+
+2.2.26 zmodyfikowane
+#include <stdio.h>
+#include <stdlib.h>
+int wyraz(int n){
+    if(n<=2){
+        return 1;
+    }
+
+
+if(n%3==0){
+    return wyraz(n-1)+wyraz(n-2);
+}
+else if(n%3==1){
+    return 2*wyraz(n-1);
+}
+else {
+    return wyraz(n-1)+wyraz(n-2)+wyraz(n-3);
+}
+}
+
+int main()
+{
+for(int i =0; i<15; i++){
+    printf("%d wyraz to: %d \n", i, wyraz(i));
+}
+}
+
