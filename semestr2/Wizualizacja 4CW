@@ -1,0 +1,30 @@
+#1Zad
+import numpy as np
+a=np.arange(2,42,2)
+
+print(a)
+#2Zadanie
+b=np.array([10.50,10.31,20.03,20.04,1.11])
+b=np.dtype('float64').type(b)
+c=b
+c=np.dtype('int64').type(c)
+print(b)
+print(c)
+#3Zadanie
+print("3ZAD----------------------")
+n=eval(input())
+x=(n*n)+1
+def funkcja(n):
+    d=np.arange(1,x,1)
+    return d
+print("Rozmiar tablicy wynosi:")
+print(x-1)
+print(funkcja(n))
+#5Zadanie
+m=eval(input())
+def diagon(m):
+
+    l=np.arange(m,0,-1)
+    u=np.diag(l)
+    return u
+print(diagon(m))
