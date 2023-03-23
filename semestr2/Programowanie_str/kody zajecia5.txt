@@ -1,0 +1,183 @@
+WSTĘP DO WSKAŹNIKÓW
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  int liczba = 505;
+  printf("wartosc zmiennej to: %d\n", liczba);
+  printf("adres zmiennej to: %p\n\n", &liczba);
+  int *wskaznik =&liczba;
+  printf("wartosc zmiennej to: %d\n", liczba);
+  printf("adres zmiennej to: %p\n\n", &liczba);
+  printf("adres przechowywany we wskaźniku to %p\n", wskaznik);
+  printf("wskazywana wartosc to %d\n", *wskaznik);
+  int i =0;
+  const int *a = &i; //wskaznik na stala, 
+  int * const b = &i;//staly wskaznik
+  int const * const c = &i; //staly wskaznik na stala
+  //*a = 1: //Nie mozna zmieniac wartosci wskaznikow
+  *b = 1; //tu kompilator nie protestuje
+  a = b; //ok
+  //b= a; //nie mozna zmienic adresu stalemu wskaznikowi
+  a = &liczba //ok
+  //b=&liczba; //niedozwolone
+  //c*=1;
+  //c=&liczba;
+}
+PRZYKŁAD
+
+#include <iostream>
+
+
+int podwoj(int *x){
+*x=2*(*x);
+return *x;
+}
+
+int main()
+{
+int a =4;
+printf("%d ", podwoj(&a));
+printf("%d ", a);
+}
+
+zadanie 3.2.1
+#include <iostream>
+
+
+int mniejszy(int *x, int *y){
+if (*x >*y){
+    return *y;
+}
+return *x;
+}
+
+int main()
+{int a =10;
+int b = 5;
+int c = 2;
+printf("%d ", mniejszy(&a,&b));
+printf("%d ", mniejszy(&b,&c));
+printf("%d", mniejszy(&a,&c));
+}
+
+zadanie 3.2.2
+#include <iostream>
+
+
+int* mniejszy(int *x, int *y){
+if (*x >*y){
+    return y;
+}
+return x;
+}
+
+int main()
+{int a =10;
+int b = 5;
+int c = 2;
+printf("%p ", mniejszy(&a,&b));
+printf("%p ", mniejszy(&b,&c));
+printf("%p", mniejszy(&a,&c));
+}
+
+zadanie 3.2.3
+#include <iostream>
+
+
+void wymien(int *x, int *y){
+int temp = *x;
+*x = *y;
+*y = temp;
+}
+
+int main()
+{int a =10;
+int b = 5;
+
+printf("a = %d, b = %d ", a,b);
+wymien(&a, &b);
+printf("a = %d, b = %d ", a,b);
+}
+
+zadanie 3.2.4
+#include <iostream>
+
+
+
+void wymien(int *x, int *y){
+if(*x>*y){
+int temp = *x;
+*x = *y;
+*y = temp;}
+}
+
+int main()
+{int a =10;
+int b = 5;
+int c = 15;
+
+printf("a = %d, b = %d \n", a,b);
+wymien(&a, &b);
+printf("a = %d, b = %d\n", a,b);
+printf("a = %d, c = %d \n", a,c);
+wymien(&a, &c);
+printf("a = %d, c = %d\n ", a,c);
+
+}
+zadanie 3.2.5
+#include <iostream>
+
+
+
+int suma(const int *x, const int *y){
+    return *x+*y;
+
+}
+
+int main()
+{const int a =10;
+const int b = 5;
+
+
+printf("%d", suma(&a,&b));
+
+}
+zadanie 3.2.6
+#include <iostream>
+
+
+void przypisz(int n, int *w){
+    *w = n;
+}
+
+int main()
+{ int a =10;
+int b = 5;
+printf(" a = %d, b= %d", a, b);
+przypisz(a,&b);
+printf(" a = %d, b= %d", a, b);
+
+}
+
+zadanie 3.2.9
+#include <studio.h>
+#include <stdlib.h>
+
+int* zarezerwuj(int n){
+return malloc(n*sizeof(int));
+}
+
+int main()
+{
+    int* a = zarezerwuj(5);
+    printf("%p", a);
+    *a=9;
+    printf("%d", *a);
+}
+
+
+
+
