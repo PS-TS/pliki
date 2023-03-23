@@ -28,3 +28,9 @@ def diagon(m):
     u=np.diag(l)
     return u
 print(diagon(m))
+#7Zadanie
+def funkcjawielokrotnosc(n):
+    cd=np.array([[n,n+n,n+n+n],[n+n,n,n+n],[n+n+n,n+n,n]])
+    return cd
+print(funkcjawielokrotnosc(2))
+
