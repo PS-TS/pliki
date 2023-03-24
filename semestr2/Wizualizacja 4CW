@@ -15,7 +15,7 @@ print("3ZAD----------------------")
 n=eval(input())
 x=(n*n)+1
 def funkcja(n):
-    d=np.arange(1,x,1)
+    d=np.arange(1,x,1) #warto tu dodac .reshape(n,n) 
     return d
 print("Rozmiar tablicy wynosi:")
 print(x-1)
