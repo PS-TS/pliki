@@ -1,0 +1,291 @@
+delta
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    double a,b,c,d;
+    printf("Podaj wartosci rownania kwadratowego: ");
+    scanf("%lf%lf%lf", &a,&b,&c);
+    d=b*b-4*a*c;
+    printf("Delta wynosi: ");
+    printf("%lf \n",d);
+    if(d>0){
+        printf("x1=%lf \n",(-b+sqrt(d)/2*a));
+        printf("x2=%lf \n", (-b-sqrt(d)/2*a));
+    }
+    else if (d==0){
+        printf("x0=%lf \n", (-b/2*a));
+    }
+    else if (d < 0){
+        printf("Delta jest ujemna, brak rozwiazan");
+    }
+}
+
+wielokrotnosci
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a,b;
+    printf("Podaj liczbe ktora bedzie wielokrotnosciowana: \n");
+    scanf("%d", &a);
+    printf("Podaj liczbe do ktorego ma byc podana wielokrotnosc: \n");
+    scanf("%d", &b);
+    printf("Wynik: \n");
+    for (int i=a;i <b;i=i+a){
+        printf("%d \n",i);
+    }
+    return 0;
+}
+
+tez wielokrotnosci
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a,b,c;
+
+    printf("Podaj liczbe ktora bedzie wielokrotnosciowana: \n");
+
+    scanf("%d", &a);
+
+    printf("Podaj gorne ograniczenie: \n");
+
+    scanf("%d", &b);
+
+    printf("Podaj dolne ograniczenie: \n");
+    scanf("%d", &c);
+
+    while (c > b){
+        printf("Podaj gorne i dolne ograniczenie w zakresie logicznym \n");
+        scanf("%d,%d", b,c);
+    }
+
+    printf("Wynik: \n");
+    for (int i=a;i < b;i=i+a){
+        printf("%d \n",i);
+    }
+    return 0;
+}
+
+dalej wielokrotnosci
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a,b, liczba;
+
+    printf("Podaj liczbe ktora bedzie wielokrotnosciowana: \n");
+
+    scanf("%d", &a);
+
+    printf("Podaj ilosc wykonanych wielokrotnosci: \n");
+
+    scanf("%d", &b);
+
+    printf("Wynik: \n");
+    for (int i=1;i <= b;i++){
+        liczba=a*i;
+        printf("%d \n",liczba);
+    }
+    return 0;
+}
+silnia zwykla
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int silnia=1;
+
+    printf("Podaj liczbe z ktorej zrobimy silnie: \n");
+
+    scanf("%d", &a);
+
+    printf("Wynik: \n");
+    for (int i=1;i <= a;i++){
+        silnia=silnia * i;
+    }
+    
+    printf("%d \n",silnia);
+    return 0;
+}
+
+
+
+domnazanie przez parzyste silnii
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int silnia=1;
+
+    printf("Podaj liczbe z ktorej zrobimy silnie: \n");
+
+    scanf("%d", &a);
+
+    printf("Wynik: \n");
+    for (int i=2;i <= a;i=i+2){
+        silnia=silnia * i;
+    }
+    
+    printf("%d \n",silnia);
+    return 0;
+}
+
+suma kwadratow
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int liczba;
+    printf("Podaj liczbe: \n");
+
+    scanf("%d", &a);
+
+    printf("Wynik: \n");
+    for (int i=0;i <= a;i++){
+        liczba=liczba + i*i;
+    }
+    printf("%d",liczba);
+    return 0;
+}
+
+to samo co u gory ale jezeli wieksze od 1000 to daje -1 od tego
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int liczba;
+    printf("Podaj liczbe: \n");
+
+    scanf("%d", &a);
+
+    printf("Wynik: \n");
+    for (int i=0;i <= a;i++){
+        liczba=liczba + i*i;
+        if (liczba > 1000) liczba = liczba - (i-1)*(i-1);
+    }
+    printf("%d",liczba);
+    return 0;
+}
+
+
+ulepszona gora
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int a;
+    int b;
+    int liczba;
+    printf("Podaj liczbe: \n");
+
+    scanf("%d", &a);
+
+    printf("Jakiej liczby ma nie przekroczyc suma kwadratow powyzszej liczby: \n");
+
+    scanf("%d", &b);
+
+    printf("Wynik: \n");
+    for (int i=0;i <= a;i++){
+        liczba=liczba + i*i;
+        if (liczba > b) liczba = liczba - (i-1)*(i-1);
+    }
+    printf("%d",liczba);
+    return 0;
+}
+
+nta liczba z ciagu fibonnaciego ZLE JSET
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int n;
+    int p=0;
+    int d=1;
+    int b=1;
+    int liczba;
+
+    printf("Podaj liczbe do ciagu Fibonacciego: \n");
+
+    scanf("%d", &n);
+
+    printf("Wynik: \n");
+    for (int i=3;i < n;i++){
+        liczba=(n-1)+(n-2);
+    }
+    if (n==0){
+        printf("%d", p);
+    }
+    else if (n==2){
+        printf("%d", d);
+    }
+    else if (n==1){
+        printf("%d", b);
+    }
+    printf("%d",liczba);
+    return 0;
+}
+
+
+NWD
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int n,m,d;
+    scanf("%d%d", &n,&m);
+    for(int i=1;i<=m&&i<=n;i++){
+        if(m%i==0&&n%i==0){
+            d=1;
+        }
+    }
+    printf("NWD(%d,%d)=%d",n,m,d);
+    return 0;
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int main()
+{
+    int n,m,temp;
+    scanf("%d%d", &n,&m);
+    int a=n;
+    int b=m;
+    while (n!=0){
+        temp=n;
+        n=m%n;
+        m=temp;
+    }
+    printf("NWD(%d,%d)=%d",a,b,m);
+    return 0;
+}
