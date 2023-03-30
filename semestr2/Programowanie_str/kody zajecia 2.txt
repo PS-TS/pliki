@@ -65,7 +65,7 @@ int main()
 
     while (c > b){
         printf("Podaj gorne i dolne ograniczenie w zakresie logicznym \n");
-        scanf("%d,%d", b,c);
+        scanf("%d,%d", b,c); 
     }
 
     printf("Wynik: \n");
