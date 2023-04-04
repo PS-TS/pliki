@@ -49,3 +49,71 @@ fooA(names)
 fooB(names)
 fooC(names)
 fooD(names)
+
+import math
+
+def fooA(*argv):
+    iloczyn = 1
+    for arg in argv:
+        iloczyn *= arg
+    return iloczyn
+
+
+def fooB(n, *argv):
+    suma = 0
+    for arg in argv:
+        liczba = pow(arg, n)
+        suma += liczba
+    return suma
+
+
+def mean(n, *argv):
+    suma = 0
+    licznik = 0
+    for arg in argv:
+        licznik += 1
+        suma += arg
+
+    return suma/licznik
+
+def gmean(n, *argv):
+    iloczyn = 1
+    licznik = 0
+    for arg in argv:
+        licznik += 1
+        iloczyn *= arg
+    return iloczyn ** (1 / licznik)
+
+
+print(fooA(5, 3, 1, 2))
+print(fooB(2, 3, 1, 2))
+print(mean(2, 3, 1, 2))
+print(gmean(2, 3, 1, 2, 10, 6))
+
+def numerTelefonu(**kwargs):
+    for imie, nr in kwargs.items():
+        print(f"{imie} ma numer {nr}")
+
+
+numerTelefonu(Andrzej='910-440-112', Janusz='565-422-899')
+
+
+def wyplata(**kwargs):
+    zarobek = list(kwargs.values())
+    n = len(zarobek)
+    mean = sum(zarobek) / n
+    gmean = sum(zarobek) ** (1 / n)
+    return mean, gmean
+
+
+zarobki = {'St': 4000, 'Lu': 1500, 'Marz': 3500, 'Kwie': 3000, 'Maj': 2900, 'Czer': 4000, 'Lip': 1000, 'Sie': 8000,
+           'Wrz': 4500, 'Paz': 4300, 'Lis': 3100, 'Gru': 6000}
+mean, gmean = wyplata(**zarobki)
+print(f"Srednia aryt: {mean:.2f}")
+print(f"Srednia geo: {gmean:.2f}")
+
+zarobki2 = {'St': 2441, 'Lu': 1350, 'Marz': 3500, 'Kwie': 1235, 'Maj': 8666, 'Czer': 3455, 'Lip': 2133, 'Sie': 1124,
+           'Wrz': 9998, 'Paz': 562375, 'Lis': 5667, 'Gru': 4564}
+mean2, gmean2 = wyplata(**zarobki2)
+print(f"Srednia aryt: {mean2:.2f}")
+print(f"Srednia geo: {gmean2:.2f}")
