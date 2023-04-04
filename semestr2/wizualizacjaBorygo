@@ -1,0 +1,51 @@
+def fooA(names):
+    nowa_lista = []
+    for x in names:
+        x = x.strip()
+        x = x.split(' ')
+        x = ''.join(x)
+        x = x.capitalize()
+        nowa_lista.append(x)
+    print(nowa_lista)
+
+
+def fooB(names):
+    nowa_lista = []
+    for x in names:
+        x = x.strip()
+        x = x.split(' ')
+        x = ''.join(x)
+        if (x.find('l') >= 0):
+            nowa_lista.append(x)
+    print(nowa_lista)
+
+
+def fooC(names):
+    nowa_lista = []
+    for x in names:
+        x = x.strip()
+        x = x.split(' ')
+        x = ''.join(x)
+        x = x.capitalize()
+        if(x.endswith('a')):
+            nowa_lista.append(x)
+    tupla = tuple(nowa_lista)
+    print(tupla)
+
+
+def fooD(names):
+    litery = 0
+    nowa_lista = []
+    for x in names:
+        x = x.strip()
+        x = x.split(' ')
+        x = ''.join(x)
+        litery += len(x)
+    print(litery)
+
+
+names = [" michal ", " n e l a ", " o l a ", " przemek "]
+fooA(names)
+fooB(names)
+fooC(names)
+fooD(names)
