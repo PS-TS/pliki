@@ -1,0 +1,179 @@
+piramidka/piramida
+
+int funkcja(int n, int *tab1, int *tab2){
+    int temp = tab1[0];
+    int zlicz = 0;
+    int j = 0;
+    for(int i = 0; i<n; i++){
+        if(temp == tab1[i]){
+            zlicz+=1;
+            if (i == (n-1)){
+            tab2[j] = zlicz;
+            j+=1;
+            tab2[j] = tab1[i-1];
+        }
+        }
+
+
+        else{
+            temp = tab1[i];
+            tab2[j] = zlicz;
+            j+=1;
+            tab2[j] = tab1[i-1];
+            j+=1;
+            zlicz = 1;
+        }
+    }
+}
+void wypisz(unsigned int n, int *tab)
+{
+    int i;
+    for(i=0; i<n; i++){
+        printf("%d\t", tab[i]);
+    }
+printf("\n");
+}
+int main()
+{
+    int tab1[21]={2,1,1,1,1,3,2,2,2,1,4,5,1,1,1,1,2,2,2,2,2};
+    int tab2[40];
+    funkcja(21, tab1, tab2);
+    wypisz(40, tab2);
+}
+
+////
+przypisanie sumy elementow 2 tablic do tab3
+przypisanie wiekszego elementu sposrod tablic tab1 tab2 do tab3
+
+int funkcja(int n, int *tab1, int *tab2, int *tab3){
+        int i;
+        for(int i=0;i< n;i++){
+        tab3[i]=tab1[i]+tab2[i];
+        }
+        for(int i=0;i< n;i++){
+        if (tab1[i] > tab2[i]) tab3[i] =tab3[i]+tab1[i];
+        else tab3[i] = tab3[i]+tab2[i];
+        }
+}
+void wypisz(unsigned int n, int *tab)
+{
+    int i;
+    for(i=0; i<n; i++){
+        printf("%d\t", tab[i]);
+    }
+printf("\n");
+}
+int main()
+{
+    int tab1[]={3,5,12,7};
+    int tab2[]={2,12,5,6};
+    int tab3[4];
+    printf("%d", funkcja(4, tab1, tab2, tab3));
+    wypisz(4, tab3);
+}
+
+wymieszanie
+void wymieszanie (unsigned int n, int *tab1, int *tab2, int *tab3){
+    int temp = tab2;
+    int temp1= tab3;
+    for (int i=0; i < n; i++){
+        tab1[i] = tab2[i];
+        temp[i]=tab3[i];
+        temp1[i]=tab1[i];
+    }
+}
+
+sortowanie
+int sklejanie(int n, int *tab1, int *tab2, int *tab3){
+        int i;
+        int j=0;
+        int k=0;
+        for(int i=0;i<2*n;i++){
+        for(int j=0;j < 2 * n;i++){
+            if (tab3[i]%2==1){
+                tab3[i]=tab2[j];
+                j++;
+            }
+            else{
+                tab3[i]=tab1[k];
+                k++;
+            }
+        }
+}
+
+maksima/maksimum/minimum/srodkowa
+void pierwotnewartosci(int n, int *tab1, int *tab2, int *tab3){
+    int temp1[n], temp2[n], temp3[n];
+    for (int i=0;i<n;i++){
+        tab1[i]=temp1[i];
+        tab2[i]=temp2[i];
+        tab3[i]=temp3[i];
+    }
+    for(int i=0;i< n;i++){
+        if (tab1[i] > tab2[i] && tab3[i]) tab1[i]=tab1[i];
+        else if (tab2[i] > tab3[i] && tab1[i]) tab1[i]=tab2[i];
+        else tab1[i]=tab3[i];
+        }
+    for (int i=0; i < n; i++){
+        if ((temp2[i] > temp1[i]) && (temp2[i] < temp3[i])) tab2[i]=temp2[i];
+        else if ((temp1[i]) > temp3[i] && (temp1[i] < temp2[i])) tab2[i]=temp1[i];
+        else tab2[i]=temp3[i];
+    }
+    for (int i=0; i < n; i++){
+        if ((temp2[i] < temp1[i]) && (temp2[i] < temp3[i]) tab3[i]=temp2[i];
+        else if ((temp1[i] < temp3[i]) && ((temp1[i] < temp2[i])) tab3[i]=temp1[i];
+        else tab3[i]=temp3[i];
+    }
+
+}
+
+
+int maksimum(int n, int *tab1){
+    int i;
+    int maximum=tab1[0];
+    for (int i=1;i < n;i++){
+        if (maximum < tab1[i]) maximum =tab1[i];
+    }
+    return maksimum;
+}
+
+int minimum(int n, int *tab1){
+    int i;
+    int minimum=tab1[0];
+    for (int i=1;i < n;i++){
+        if (minimum > tab1[i]) minimum =tab1[i];
+    }
+    return minimum;
+}
+
+index
+int indeks(int n, int *tab1){
+    int i;
+    int indeks;
+    int max=tab[0];
+    for (i=1;i<n;i++){
+        if (max<tab[i]){
+            max=tab[i];
+            indeks=i;
+        }
+    }
+    return indeks;
+}
+
+void odwracanie(unsigned int n, int *tab1){
+    int temp;
+    for (int i=0; i < n/2;i++){
+        temp=tab1[i];
+        tab1[i]=tab1[n-1-i];
+        tab1[n-1-i]=temp;
+    }
+}
+
+przesuniecie w lewo
+int wlewo(unsigned int n, int *tab1){
+    int temp=tab1[0];
+    for (int i=1; i < n-1;i++){
+        tab1[i-1]=tab1[i];
+    }
+    tab1[n-1]=temp;
+}
