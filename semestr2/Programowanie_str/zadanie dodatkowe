@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, int *tab)
+{
+    int i;
+    for(i=0; i<n; i++){
+        printf("%d\t", tab[i]);
+    }
+printf("\n");
+}
+int piramida(int n, int *tab1, int *tab2){
+    int temp = tab1[0];
+    int zlicz = 0;
+    int j = 0;
+    for(int i = 0; i<n; i++){
+        if(temp == tab1[i]){
+            zlicz+=1;
+            if (i == (n-1)){
+            tab2[j] = zlicz;
+            j+=1;
+            tab2[j] = tab1[i-1];
+        }
+        }
+
+
+        else{
+            temp = tab1[i];
+            tab2[j] = zlicz;
+            j+=1;
+            tab2[j] = tab1[i-1];
+            j+=1;
+            zlicz = 1;
+
+        }
+
+    }
+}
+int main()
+{
+    int tablica1[21]={2,1,1,1,1,3,2,2,2,1,4,5,1,1,1,1,2,2,2,2,2};
+    int tablica2[40];
+    piramida(21, tablica1, tablica2);
+    wypisz(40, tablica2);
+}
