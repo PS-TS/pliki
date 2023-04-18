@@ -5,19 +5,20 @@ def func(lista):
     for i in lista:
         if i not in lista2:
             lista2.append(i)
-    print(lista2)
+    return lista2
 
-func(lista)
+print("1:",func(lista))
 
 #zad 2
-letters = 'ksdmjbnpxsdmnqwpabab'
-cos = "romper extreme"
-slowo = ''.join([x for x in cos if x in letters])
-slowo2 = ""
-for y in range(0, len(slowo), 4):
-    slowo2 += slowo[y]
-for x in range(len(slowo2)-1, -1, -1):
-    print(slowo2[x])
+tekst = "romper extreme"
+litery = ""
+for x in tekst:
+    if(x != " "):
+        litery += x
+
+tekst = litery[0:len(litery):4]
+tekst = tekst[::-1]
+print("2:",tekst)
 
 #zad 3
 def fibonacci_rek(n):
@@ -27,29 +28,26 @@ def fibonacci_rek(n):
         return 1
     return fibonacci_rek(n-1)+fibonacci_rek(n-2)
 
-print(fibonacci_rek(10))
+print("3a:", fibonacci_rek(10))
 
 def fibonnaci(n):
-    tablica = []
-    tablica.append(0)
-    tablica.append(1)
+    b = 1
+    a = 0
+    suma = 0
     for x in range(2, n+1):
-        y = tablica[x-1]+tablica[x-2]
-        tablica.append(y)
+        b += a
+        a = b - a;
 
-    return tablica[n]
+    return b
 
-
-print(fibonnaci(10))
+print("3b:",fibonnaci(10))
 
 #zad 4
-
 def funkcja(*args,n):
     iloczyn = 1
     for x in args:
         iloczyn = iloczyn * x**n
-    print(iloczyn)
-
+    print("4:",iloczyn)
 
 funkcja(1, 2, 3, 4, 5, n=3)
 
@@ -57,7 +55,7 @@ funkcja(1, 2, 3, 4, 5, n=3)
 
 owoce = ['apple', 'banana', 'pomegranate', 'plum', 'orange', 'melon', 'cherry', 'watermelon']
 owoce2 = [len(x) for x in owoce if "u" in x or "o" in x]
-print(owoce2)
+print("5:",owoce2)
 
 #zad 6
 def silnia(n):
@@ -72,7 +70,7 @@ def newton(n,k):
         return 1
     return silnia(n)/(silnia(k)*silnia(n-k))
 
-print(newton(7,2))
+print("6:",newton(7,2))
 
 #zad 7
 
@@ -102,17 +100,27 @@ class Polynomial:
 
         return output
 
-
-def __add__(self, other):
-    s = []
-    l1 = self.wielomian
-    l2 = other.wielomian
-    if len(l1) > len(l2):
-        for i in range(0, len(l1)):
-            s.append(self.wielomian[i] + other.wielomian[i])
+    def __add__(self, other):
+        s = []
+        l1 = self.wielomian.copy()
+        l2 = other.wielomian.copy()
+        if len(l1) > len(l2):
+            for i in range(0, len(l1)-len(l2)):
+                s.append(self.wielomian[i])
         else:
-            for y in range(0, len(l2)):
-                s.append(other.wielomian[i] + self.wielomian[i])
+            for i in range(0, len(l2)-len(l1)):
+                s.append(other.wielomian[i])
+
+        if len(l1) > len(l2):
+            for i in range(0, len(l2)):
+                s.append(self.wielomian[i+len(l1)-len(l2)] + other.wielomian[i])
+        else:
+            for i in range(0, len(l1)):
+                s.append(other.wielomian[i] + self.wielomian[i+len(l2)-len(l1)])
+        return Polynomial(*s)
 
 wielomian = Polynomial(1, -2, 2)
-print(wielomian)
+wielomian1 = Polynomial(-2, 2)
+print("7:",wielomian)
+print("7:",wielomian1)
+print(wielomian+wielomian1)
