@@ -1,0 +1,118 @@
+#zad 1
+lista = [2, 89, 23, 134, 134, 23, 2, 134 , 89, 89, 3, 23, 5, 89]
+lista2 = []
+def func(lista):
+    for i in lista:
+        if i not in lista2:
+            lista2.append(i)
+    print(lista2)
+
+func(lista)
+
+#zad 2
+letters = 'ksdmjbnpxsdmnqwpabab'
+cos = "romper extreme"
+slowo = ''.join([x for x in cos if x in letters])
+slowo2 = ""
+for y in range(0, len(slowo), 4):
+    slowo2 += slowo[y]
+for x in range(len(slowo2)-1, -1, -1):
+    print(slowo2[x])
+
+#zad 3
+def fibonacci_rek(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci_rek(n-1)+fibonacci_rek(n-2)
+
+print(fibonacci_rek(10))
+
+def fibonnaci(n):
+    tablica = []
+    tablica.append(0)
+    tablica.append(1)
+    for x in range(2, n+1):
+        y = tablica[x-1]+tablica[x-2]
+        tablica.append(y)
+
+    return tablica[n]
+
+
+print(fibonnaci(10))
+
+#zad 4
+
+def funkcja(*args,n):
+    iloczyn = 1
+    for x in args:
+        iloczyn = iloczyn * x**n
+    print(iloczyn)
+
+
+funkcja(1, 2, 3, 4, 5, n=3)
+
+#zad 5
+
+owoce = ['apple', 'banana', 'pomegranate', 'plum', 'orange', 'melon', 'cherry', 'watermelon']
+owoce2 = [len(x) for x in owoce if "u" in x or "o" in x]
+print(owoce2)
+
+#zad 6
+def silnia(n):
+    if n == 0:
+        return 1
+    return n*silnia(n-1)
+
+def newton(n,k):
+    if n == k:
+        return 1
+    if k == 0:
+        return 1
+    return silnia(n)/(silnia(k)*silnia(n-k))
+
+print(newton(7,2))
+
+#zad 7
+
+class Polynomial:
+    def __init__(self,*args):
+
+        self.wielomian=[arg for arg in args]
+
+    def __str__(self):
+        output = ''
+        maxpotega=len(self.wielomian)-1
+        potega=maxpotega
+        for element in self.wielomian:
+            wyraz = ""
+            if potega > 1:
+                wyraz += f'{element}x^{potega}'
+            elif potega == 1:
+                wyraz += f'{element}x'
+            else:
+                wyraz += str(element)
+
+            if element > 0 and potega != maxpotega:
+                output += f'+{wyraz}'
+            else:
+                output += wyraz
+            potega -= 1
+
+        return output
+
+
+def __add__(self, other):
+    s = []
+    l1 = self.wielomian
+    l2 = other.wielomian
+    if len(l1) > len(l2):
+        for i in range(0, len(l1)):
+            s.append(self.wielomian[i] + other.wielomian[i])
+        else:
+            for y in range(0, len(l2)):
+                s.append(other.wielomian[i] + self.wielomian[i])
+
+wielomian = Polynomial(1, -2, 2)
+print(wielomian)
