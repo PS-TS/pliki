@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1682526634 source:c:\users\apollyon\desktop\lab2\5.2.2\main.c
+	<stdio.h>
+	<wchar.h>
+
