@@ -1,0 +1,194 @@
+zadanie 5.2.13
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void wytnijtm(char *napis1, char *napis2){
+int i,j;
+for(i=0,j=0;napis1[i]!=0; i++){
+    if(napis1[i]!=napis2[i]){
+        if(j<i){
+            napis1[j] = napis1[i];
+            j++;
+
+    }
+    napis1[j]=0;
+    }}}
+int main()
+{
+   ///cw 5_2_10
+   printf("\n cw 5_2_7\n");
+   char napis1[40] = "arbuzek";
+   char *napis2 = "arbiter";
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+   wytnijtm(napis1,napis2);
+   printf(napis1);
+   printf("\n");
+
+}
+
+
+zadanie 5.2.20
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+char* godzina(int godzina, int minuty, int sekundy){
+char* wynik=malloc(9*sizeof(char));
+sprintf(wynik, "%02d:%02d:%02d", godzina, minuty, sekundy);
+return wynik;
+}
+int main()
+{
+   ///cw 5_2_20
+   printf("\n cw 5_2_20\n");
+  int godziny = 7;
+  int minuty = 48;
+  int sekundy = 5;
+  printf(godzina(godziny, minuty, sekundy));
+
+
+}
+
+zadanie 5.2.26
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <wchar.h>
+
+void maleduze(char* napis){
+int i;
+for(i=0;napis[i]!=0;i++)
+    {
+        napis[i] = towupper(napis[i]);
+    }
+}
+int main()
+{
+   ///cw 5_2_20
+   printf("\n cw 5_2_26\n");
+   char napis[80]= "do zmiany, TROCHE DUZYCH, symbole arytmetyczne 2+2=4";
+   printf(napis);
+   printf("\n");
+   maleduze(napis);
+   printf(napis);
+
+
+
+}
+
+zadanie 5.2.22 niedokończone, rozwiazanie w skrypcie
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <wchar.h>
+#include <string.h>
+
+char* sklejnapisy(char* napis1, char* napis2, char* napis3){
+char* wynik = malloc((strlen(napis1)+strlen(napis2)+strlen(napis3)+1)*sizeof(char));
+
+}
+
+int main()
+{
+   ///cw 5_2_22
+   printf("\n cw 5_2_22\n");
+   char napis[80]= "do zmiany, TROCHE DUZYCH, symbole arytmetyczne 2+2=4";
+   printf(napis);
+   printf("\n");
+   maleduze(napis);
+   printf(napis);
+
+
+
+}
+
+wstep tablice wielowymiarowe
+#include <stdio.h>
+#include <stdlib.h>
+
+//cw 6_2_1
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+
+//cw 6_2_2
+int(* alokuj2(unsigned int n, unsigned int m))[]{
+return malloc(n*sizeof(int[m]));
+}
+
+//cw 6_2_18
+void wypisz(int **t, unsigned int n, unsigned int m){
+    for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+}
+void wypisz2(unsigned int n, unsigned int m, int t[][m]){
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+}
+//wczytaj
+void wczytaj(int** t, unsigned int n, unsigned int m){
+   for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            scanf("%d ", &t[i][j]);
+        }
+    }
+}
+
+void wczytaj2(unsigned int n, unsigned int m, int t[][m]){
+     for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            scanf("%d ", &t[i][j]);
+        }
+    }
+}
+
+//cw 6_2_3
+void zwolnij(unsigned int n, unsigned int n, int **t){
+int i;
+for(i =0; i<n;i++){
+    free(t[i]);
+}
+
+//cw 6_2_4
+void zwolnij2(unsigned int n, int t[][n]){
+free(t)
+}
+int main()
+{
+
+//tablica tablic
+int **t = alokuj(3,3);
+wczytaj(t,3,3);
+wypisz(t,3,3);
+//tablica dwuwymiarowa
+int t2[3][3];
+wczytaj2(3,3,t2);
+wypisz2(3,3,t2);
+//inicjalizacja bezposrednia
+int t3[4][4] = {{20,2,5,8},{2,8,31,4},{5,6,7,8},{5,6,7,8}};
+wypisz2(4,4,t3);
+
+
+}
+
+
+
+
