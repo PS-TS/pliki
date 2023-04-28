@@ -1,0 +1,10 @@
+xlsx = pd.ExcelFile('imiona.xlsx')
+df = pd.read_excel(xlsx, header=0)
+
+c = df.groupby(['Rok']).agg({'Liczba': ['sum']})
+plt.subplot(1, 3, 3)
+plt.xlabel('Rok')
+plt.ylabel('Suma')
+plt.title("Suma urodzonych dzieci w danym roku: ")
+c.plot.bar(color=['black'])
+plt.show()
