@@ -372,11 +372,65 @@ int main()
     wypisz(3,3,tablica);
 
 }
+void odwroc(int **t, unsigned int n, unsigned int m){
+    int i;
+    for(i=0;i<n;i++){
+        swap(n,t[i]);
+    }
+}
+
+void przesuwanie(unsigned int n, unsigned int m, int ** t){
+    int i,j,x;
+    for(i=0;i<m;i++){
+        x=t[n-1][i];
+        for(j-n-1;j>0;j--){
+            t[j][i]=t[j-1][i];
+            t[0][i]=x;
+        }
+    }
+}
+
+zadanie dodatkowe
+
+int **piramida(int n){
+    int dist;
+    int **tab=malloc(n*sizeof(int *));
+    for(int i=0; i<n;i++){
+        tab[i]=malloc(n*sizeof(int));
+        for(int j=0;j<n;j++){
+                if(i < j){
+            int dist=i;
+                }
+                else{
+                    dist=j;
+                }
+            dist = dist < n - i ? dist :n -i-1;
+            dist=dist < n - j ? dist:n-j-1;
+            tab[i][j]=dist+1;
+        }
+    }
+    return tab;
+}
+
+void print(int **array, int n){
+for (int i=0;i<n;i++){
+    for(int j=0;j<n;j++){
+        printf("%d", array[i][j]);
+    }
+    printf("\n");
+}
+}
+
+
+int main()
+{
+    int n=5;
+    int **arr=piramida(n);
+    print(arr,n);
+
+}
+
 
 ćwiczenie domowe: przerobić na tablice dwuwymiarowe, przerobić na funkcje wiersze w gore,
 zrobic 6.2.24
-
-
-
-
 
