@@ -1,0 +1,38 @@
+---
+title: "Egzamin (pierwszy termin) - Wizualizacja danych - Zestaw 4"
+lang: pl
+output:
+  word_document: default
+  pdf_document: default
+---
+
+*Zadanie 1 i 2 po 15 pkt. Zadanie 3 - 20 pkt. *
+
+*Punktacja: 46-50 pkt - bdb(5,0); 41-45 pkt - db+(4,5); 36-40 pkt - db(4,0); 31-35 pkt - dst+(3,5); 26-30 pkt - dst(3,0); 0-25 pkt - ndst (2,0).*  
+
+Zad.1. Na jednym wykresie narysuj wykresy krzywych: $y=-x^3+3x-7$, $y=4x+6$, $y=6+4x^3$ na przedziale $[-5,5]$. Wykres powinien posiadać tytuł, legendę, podpisane etykiety obu osi. Dodaj siatkę na wykres. Linie krzywych powinny mieć różne style i różne kolory inne niż domyślne. Zapisz wykres w formacie pdf za pomocą kodu. 
+
+Zad.2. W jednym pliku wykonaj poniższe czynności:
+
+* załaduj dane z pliku kina4.csv jako ramkę danych (Data Frame),
+* wyświetl na konsoli średnią z poszczególnych lat 
+
+sale - średnia
+
+miejsca na widowni - średnia
+
+* stwórz wykres słupkowy prezentujący dane zawarte w ramce danych
+* umieść swój numer indeksu w prawym górnym rogu wykresu.
+
+Wykres powinien być estetyczny i podpisany. Im więcej - tym lepiej.
+
+Zapisz wykres w formacie png za pomocą kodu.
+
+Zad.3. W jednym pliku wykonaj poniższe czynności:
+
+* załaduj dane z pliku sprzedaz4.csv,
+* uporządkuj dane tak, aby dane liczbowe były zgodne z koncepcją "czystych danych" (w kolumnach)
+* stwórz wykres liniowy prezentujący dane zawarte w pliku 
+* Wykres powinien być estetyczny i podpisany. Im więcej - tym lepiej.
+
+Zapisz wykres w formacie jpg za pomocą kodu.
