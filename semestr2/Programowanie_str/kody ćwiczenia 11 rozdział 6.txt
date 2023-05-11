@@ -433,4 +433,10 @@ int main()
 
 ćwiczenie domowe: przerobić na tablice dwuwymiarowe, przerobić na funkcje wiersze w gore,
 zrobic 6.2.24
-
+odwróć wiersz, w których jest najwięcej elementów parzystych.
+policz sumę elementow nieparzystych, znajduących się kolumnie parzystej itd,
+podmienić wszystkie spacje na podkreślniki, usunąć wszystkie spacje,
+zwrócić 1 jeśli pierwszy napis jest wcześniej w kolejności leksykograficznej, 
+0 w przeciwnym razie, nie rozróżniając wielkich i małych liter,
+policz ile w napisie jest samogłosek, który znak występuje najczęściej,
+wytnij z napisu wszystkie litery a, jeżeli za literą a stoi samogłoska
