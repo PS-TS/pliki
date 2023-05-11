@@ -1,0 +1,205 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct trojkat
+{
+    double a,b,c;
+};
+
+double obwod(struct trojkat t)
+{
+    return t.a+t.b+t.c;
+}
+double pole(struct trojkat t)
+{   double p;
+    p = (t.a+t.b+t.c)/2;
+    return sqrt(p*(p-t.a)*(p-t.b)*(p-t.c));
+}
+bool czyTrojkat(struct trojkat t){
+    if(t.a<0 || t.b <0 || t.c < 0){
+        return 0;
+    }
+    if((t.a+t.b<=t.c)||(t.a+t.c<=t.b)||(t.b+t.c<=t.a)){
+        return 0;
+    }
+    return 1;
+}
+
+int main()
+{
+   struct trojkat t1;
+   t1.a = 10;
+   t1.b = 14;
+   t1.c = -5;
+   printf("Obwod: %f\n", obwod(t1));
+   printf("%d\n", sizeof(double));
+   printf("%d\n", sizeof(struct trojkat));
+    printf("Pole: %f\n", pole(t1));
+    printf("Czy jest to trojkat:");
+    if(czyTrojkat(t1)){
+        printf("jest to trojkat");
+
+    }
+    else{
+        printf("nie jest to trojkat");
+    }
+
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct trojkat
+{
+    double a,b,c;
+};
+
+
+double obwod(struct trojkat t)
+{
+    return t.a+t.b+t.c;
+}
+
+void przepisz(struct trojkat troj1, struct trojkat *troj2)
+{
+*troj2 = troj1;
+}
+
+void wypisz(struct trojkat tr1){
+printf("%f\n",tr1.a);
+printf("%f\n",tr1.b);
+printf("%f\n",tr1.c);
+printf("\n");}
+
+void zamien(struct trojkat *troj1, struct trojkat *troj2)
+{ struct trojkat temp;
+    temp = *troj1;
+    *troj1 = *troj2;
+    *troj2= temp;
+}
+int main()
+{
+   struct trojkat t1;
+   t1.a = 3;
+   t1.b = 4;
+   t1.c = 5;
+   struct trojkat t2;
+   t2.a =1;
+   t2.b =1;
+   t2.c =1;
+   struct trojkat *wsk2 = &t2;
+   wypisz(t1);
+   wypisz(t2);
+   zamien(&t1, &t2);
+   wypisz(t1);
+   wypisz(t2);
+   printf("Obwod: %f\n", obwod(t1));
+   printf("%d\n", sizeof(double));
+   printf("%d\n", sizeof(struct trojkat));
+
+
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct punkt
+{
+    double x,y,z;
+};
+
+double odleglosc(struct punkt p1, struct punkt p2)
+{
+    return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)+(p1.z-p2.z)*(p1.z-p2.z));
+}
+
+double minimum(struct punkt tab[], int n){
+int i, j;
+double pom;
+double min = sqrt(pow(tab[1].x-tab[0].x,2)+pow(tab[1].y-tab[0].y,2)+pow(tab[1].z-tab[0].z,2));
+for(i=0; i<n-1;i++){
+    for(j=i+1;j<n; j++){
+        pom = odleglosc(tab[j],tab[i]);
+    }
+    if(pom<min){
+        min = pom;
+    }
+}
+return min;
+}
+
+int main()
+{   struct punkt p1;
+    struct punkt p2;
+    struct punkt p3;
+    p1.x = 1;
+    p1.y = 3;
+    p1.z = 7;
+    p2.x = 2;
+    p2.y = 6;
+    p2.z = 4;
+    p3.x = 2;
+    p3.y = 8;
+    p3.z = 5;
+    struct punkt tab[3] = {p1,p2,p3};
+    printf("%f", minimum(tab,3));
+
+
+
+}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct zespolone
+{
+    double re,im;
+};
+struct zespolone dodaj(struct zespolone z1, struct zespolone z2){
+    struct zespolone suma;
+    suma.im = z1.im + z2.im;
+    suma.re = z1.re + z2.re;
+    return suma;
+
+}
+
+void wyswietl(struct zespolone z){
+    printf("Ta liczba to %f + %f i\n", z.re, z.im);
+}
+
+void wczytaj_liczbe_zespolona(struct zespolone liczba){
+    scanf("%lf",&liczba.re);
+    scanf("%lf",&liczba.im);
+}
+double modul_liczby_zespolonej(struct zespolone liczba)
+{
+return sqrt(pow(liczba.re,2)+pow(liczba.im,2));
+}
+
+
+
+int main()
+{
+    struct zespolone z1;
+    struct zespolone z2;
+    z1.re = 1;
+    z1.im = 2;
+    z2.re = -1;
+    z2.im = 3;
+    wyswietl(dodaj(z1,z2));
+
+}
+
+
+
