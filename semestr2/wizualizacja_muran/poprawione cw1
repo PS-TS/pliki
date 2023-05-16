@@ -1,0 +1,47 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+
+data = pd.read_csv('4.csv',sep = ',', index_col=False, encoding="UTF-8")
+
+data = data.dropna()
+print(data)
+
+print(data.groupby(['sex'])['body_mass_g'].mean())
+# print(data[data['sex']=='MALE']['body_mass_g'].mean())
+print(data.groupby('island').size())
+print(data[data['body_mass_g'] == data['body_mass_g'].max()])
+print(data[data['body_mass_g'] == data['body_mass_g'].min()])
+print(len(data[data['island'] == 'Torgersen']))
+
+
+data.groupby(['island']).size().plot.bar()
+plt.show()
+
+colors = np.where(data['sex'] == 'MALE', 'blue', 'red')
+weight = (data['body_mass_g'] ** 2 / 300000).astype(float)
+
+data.plot.scatter(x='bill_depth_mm', y='bill_length_mm', c=colors, s=weight)
+plt.show()
+
+species = data['species'].copy()
+sp = np.unique(species)
+print(species)
+
+i = 0
+mark = ["<", "s", "o", "^"]
+for x in sp:
+    species[species == x] = mark[i]
+    i += 1
+
+print(species.to_list())
+
+fig, ax = plt.subplots()
+
+z = zip(data['bill_length_mm'], data['bill_depth_mm'], colors, weight, species)
+
+for x0, y0, col, w, m in z:
+    ax.scatter(x0, y0, c=col, s=w, marker=m)
+
+plt.show()
