@@ -1,0 +1,22 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
+sns.set_theme()
+
+tips = sns.load_dataset("tips")
+sns.relplot(
+    data=tips,
+    x="total_bill", y="tip", col="time",
+    hue="smoker", style="smoker", size="size",
+)
+plt.show()
+
+penguins = sns.load_dataset("penguins")
+sns.relplot(
+    data=penguins,
+    y='bill_depth_mm', x='bill_length_mm',
+    hue="sex", style="species", size="body_mass_g",
+)
+plt.show()
