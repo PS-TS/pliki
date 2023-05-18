@@ -156,6 +156,19 @@ struct element *odwroc(struct element *Lista){
     }
     return temp;
     
+ struct element* doklej(struct element * lista, struct element * lista2){
+    struct element* w1;
+    if (lista==NULL){
+        return lista2;
+    }
+    w1=lista;
+    while(w1->next!=NULL){
+        w1=w1->next;
+        w1->next=lista2;
+    }
+    return lista;
+    };
+    
     
     
 };
