@@ -1,0 +1,178 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+///listy bez glowy
+/// cw 7_3_1
+struct element{
+int i;  ///liczba rzeczywista, ktora przechowujemy
+struct element *next;
+};
+struct element *utworz(){
+return NULL;
+};
+///CW 7_3_2
+void wyczysc(struct element *Lista){
+struct element *wsk = Lista;
+while(Lista!=NULL){
+    Lista = Lista -> next;
+    free(wsk);
+    wsk = Lista;
+}
+}
+//cw 7_3_3
+struct element *dodajnapoczatek(struct element *Lista, int a){
+struct element *wsk = malloc(sizeof(struct element));
+wsk -> i = a;
+wsk -> next = Lista;
+return wsk;
+}
+//cw 7_3_4
+struct element *dodajnakoniec(struct element *Lista, int a){
+struct element *wsk;
+wsk -> i = a;
+if(Lista == NULL)
+{
+    Lista = wsk = malloc(sizeof(struct element));
+}
+else 
+{
+    wsk = Lista;
+
+while(wsk -> next !=NULL){
+    wsk = wsk -> next;
+}
+wsk -> next = malloc(sizeof(struct element));
+wsk = wsk -> next;}
+wsk -> i =a;
+wsk -> next = NULL;
+return Lista;
+};
+
+//cw 7_3_5
+struct element *dodajodpowiednio(struct element* Lista, struct element *elem, int a){
+    struct element *wsk = malloc(sizeof(struct element));
+    wsk -> i=a;
+    if(elem == NULL){
+        wsk -> next = Lista;
+        Lista = wsk;
+    }
+    else{
+        wsk -> next = elem -> next;
+        elem -> next = wsk;
+    }
+    return Lista; 
+};
+
+//cw 7_3_6
+struct element *znajdz(struct element *Lista, int a){
+while((Lista!=NULL)&&(Lista->i!=a)){
+    Lista = Lista -> next;
+}
+return Lista;
+    
+};
+
+//cw 7_3_7
+struct element *usun(struct element *Lista, int a){
+    struct element *wsk, *wsk2;
+    if(Lista == NULL){
+        return Lista;
+    }
+    wsk = Lista;
+    if(Lista -> i==a){
+        Lista = Lista ->next;
+        free(wsk);
+    }
+    else{
+        while((wsk->next!=NULL)&&(wsk->next -> i!=a)){
+            wsk = wsk -> next;
+        }
+        if(wsk->next !=NULL){
+            wsk2 = wsk -> next;
+            wsk->next = wsk2 -> next;
+            free(wsk2);
+        }
+        return Lista;
+    }
+    
+    
+};
+
+//cw 7_3_24
+int suma(struct element *Lista){
+    int suma = 0;
+    while(Lista!=NULL){
+        suma = suma + Lista -> i;
+        Lista = Lista -> next;
+    }
+    return suma;
+}
+int dlugosc(struct element *Lista){
+    int dlugosc = 0;
+    while(Lista!=NULL){
+        dlugosc = dlugosc + 1 ;
+        Lista = Lista -> next;
+    }
+    return dlugosc;
+}
+void zeruj(struct element *Lista){
+    while(Lista!=NULL){
+        Lista-> i = 0 ;
+        Lista = Lista -> next;
+    }
+}
+int min(struct element *Lista){
+    int min = Lista -> i;
+    while(Lista!=NULL){
+       if(min> Lista->i){
+        min = Lista ->i;
+       }
+        Lista = Lista -> next;
+    }
+    return min;
+}
+void wypisz(struct element *Lista){
+    while(Lista!=NULL){
+        printf("%d\n", Lista -> i);
+        Lista = Lista -> next;
+    }
+    printf("\n");
+}
+
+struct element *odwroc(struct element *Lista){
+    struct element *temp, *temp2;
+    if((Lista == NULL)||(Lista -> next == NULL)){
+        return Lista;
+    }
+    temp = Lista ->next;
+    temp2 = temp -> next;
+    Lista -> next = NULL;
+    temp-> next = Lista;
+    while(temp2!=NULL){
+        Lista = temp;
+        temp = temp2;
+        temp2 = temp2-> next;
+        temp -> next = Lista;
+    }
+    return temp;
+    
+    
+    
+};
+int main()
+{
+    struct element *lista = utworz();
+    lista=dodajnakoniec(lista,4);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, 15);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, -7);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, 9);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, -2);
+    wypisz(lista);
+    lista = dodajnapoczatek(lista,6);
+    wypisz(lista);
+    
+}
