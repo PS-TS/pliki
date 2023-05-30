@@ -60,3 +60,76 @@ a=[(np.sum(df1['fare'][df1['payment']=='cash'])),(np.sum(df1['fare'][df1['paymen
 b=np.unique(df1['payment'])
 plt.bar(b,a)
 plt.show()
+
+# Kacper Browarek , nr.169223, wariant 17
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+#zad.17.1
+d = {'Płeć': ['Mężczyzna', 'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta', 'Mężczyzna', 'Kobieta', 'Mężczyzna',
+              'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta', 'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta',
+              'Mężczyzna'],
+     'Wiek': [20, 30, 21, 34, 45, 21, 17, 18, 19, 23, 36, 69, 34, 58, 23, 44, 12],
+     'Miejsce zamieszkania': ['Wieś', 'Miasto', 'Wieś', 'Miasto', 'Wieś', 'Miasto', 'Miasto', 'Miasto', 'Wieś',
+                              'Miasto', 'Miasto', 'Wieś', 'Miasto', 'Miasto', 'Wieś', 'Wieś', 'Miasto'],
+     'czy_pali': ['Tak', 'Tak', 'Tak', 'Nie', 'Nie', 'Tak', 'Nie', 'Nie', 'Tak', 'Nie', 'Nie',
+                  'Tak', 'Tak', 'Tak', 'Nie', 'Nie', 'Nie']}
+df=pd.DataFrame(data=d)
+# Ile osób są w tabelce?
+print(f'ile osób jest w tabelce?', df['Płeć'].count())
+# Ile są mężczyzn?
+print(f'\nile jest mężczyzn?',df.query('Płeć == "Mężczyzna"')['Płeć'].count())
+# Ile kobiet w wieku poniżej 40 lat?
+print(f'\nile jest kobiet w wieku poniżej 40 lat?', df.query('Płeć == "Kobieta"')['Wiek'].mean())
+# Gdzie mieszka większość palących mężczyzn: na wsi czy w mieście?
+print('\nGdzie mieszka większość palących mężczyzn: na wsi czy w mieście?')
+print( df.query('Płeć == "Mężczyzna"').query('czy_pali == "Tak"').groupby('Miejsce zamieszkania')['Miejsce zamieszkania'].count())
+# Średni wiek osób mieszkających na wsi i w mieście
+print('\nŚredni wiek osób mieszkających na wsi i w mieście')
+print(df.groupby('Miejsce zamieszkania')['Wiek'].mean())
+# Minimalny wiek osoby palącej
+print(f'\nMinimalny wiek osoby palącej?',df.query('czy_pali == "Tak"')['Wiek'].min())
+
+#zad.17.2
+print('\n zadanie 17.2')
+x=np.linspace(-4,4,100)
+y=x**3
+y1=np.exp(x)
+fig,ax=plt.subplots(2,1)
+ax[0].plot(x,y,color='green',ls=':',label='x^3')
+ax[1].plot(x,y1,color='orange',ls='--',label='e^x')
+fig.legend(loc=6,title='Wykres')
+fig.show()
+
+#zad.17.3
+print('zadanie 17.3')
+df1 = pd.read_csv('taxis.csv',sep = ',')
+#Jaka była największa opłata (fare) w żółtej taksówce?
+print('Jaka była największa opłata (fare) w żółtej taksówce?')
+print(df1.query('color=="yellow"')['fare'].max())
+# Ile taksówek każdego koloru jest w tabelce?
+print('Ile taksówek każdego koloru jest w tabelce?')
+print(df1.groupby('color').size())
+#  Narysuj wykres punktowy zależności odległości (distance) od oplaty (fare). Kolor punktow musi odpowiadać koloru taksówki.
+kolor=np.where(df1["color"]=='yellow','y','g')
+plt.scatter(df1['distance'],df1['fare'],c=kolor)
+plt.xlabel('Distance')
+plt.ylabel('Fare')
+plt.title('Distance w zaleznosci od opłaty Fare')
+plt.show()
+#Narysuj wykres slupkowy zaleznosci sumy wszystkich platnosci (fare) od sposoby oplaty(payment)
+a=[(np.sum(df1['fare'][df1['payment']=='cash'])),(np.sum(df1['fare'][df1['payment']=='credit card']))]
+b=np.unique(df1['payment'])
+plt.bar(b,a)
+plt.show()
+
+#zad.17.4
+df2=sns.load_dataset('attention')
+sns.boxplot(x=df2['attention'],y=df2['score'],hue=df2['subject'],color='blue')
+plt.show()
+
+
+
+
+
