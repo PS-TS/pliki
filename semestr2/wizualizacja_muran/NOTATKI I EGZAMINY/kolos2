@@ -1,0 +1,92 @@
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+
+#zadanie 1
+print("\n\n\nzadanie 1\n")
+plec = np.array(['m', 'k', 'm', 'm', 'k', 'm', 'k', 'm', 'k', 'm', 'm', 'k', 'k', 'm', 'm', 'k', 'm'])
+wiek = np.array([20, 30, 21, 34, 45, 21, 17, 18, 19, 23, 36, 69, 34, 58, 23, 44,12])
+miejsce_zamieszkania = np.array(['w', 'mi', 'w', 'mi', 'w', 'mi', 'mi', 'mi', 'w', 'mi', 'mi', 'w', 'mi', 'mi', 'w', 'w', 'mi'])
+czy_pali_papierosy = np.array(['t', 't', 't', 'n', 'n', 't', 'n', 'n', 't', 'n', 'n', 't', 't', 't', 'n', 'n', 'n'])
+plec = np.where(plec == 'm', 'mezczyzna', 'kobieta')
+miejsce_zamieszkania = np.where(miejsce_zamieszkania == 'w', 'wies', 'miasto')
+czy_pali_papierosy = np.where(czy_pali_papierosy == 't', 'tak', 'nie')
+tabela = np.array([plec, wiek, miejsce_zamieszkania, czy_pali_papierosy]).T
+liczba_osob = len(plec)
+print(tabela)
+print("Liczba osób w tabelce:", liczba_osob)
+liczba_mezczyzn = np.count_nonzero(plec == 'mezczyzna')
+print("Liczba mężczyzn:", liczba_mezczyzn)
+liczba_kobiet_wiek_mniejszy_40 = np.count_nonzero((plec == 'kobieta') & (wiek < 40))
+print("Liczba kobiet w wieku poniżej 40 lat:", liczba_kobiet_wiek_mniejszy_40)
+palacy_mezczyzni_wies = np.count_nonzero((plec == 'mezczyzna') & (miejsce_zamieszkania == 'wies') & (czy_pali_papierosy == 'tak'))
+palacy_mezczyzni_miasto = np.count_nonzero((plec == 'mezczyzna') & (miejsce_zamieszkania == 'miasto') & (czy_pali_papierosy == 'tak'))
+
+if palacy_mezczyzni_wies > palacy_mezczyzni_miasto:
+    miejsce_wiekszosc = 'wies'
+else:
+    miejsce_wiekszosc = 'miasto'
+
+print("Większość palących mężczyzn mieszka:", miejsce_wiekszosc)
+sredni_wiek=int(np.sum(wiek)/len(wiek))
+print("sredni wiek:", sredni_wiek)
+
+
+
+
+# Zadanie 2
+print("\n\n\nzadanie 2\n")
+x = np.linspace(-4, 4, 100)
+y1 = x ** 3
+y2 = np.exp(x)
+plt.figure(figsize=(10, 6))
+plt.subplot(2, 1, 1)
+plt.plot(x, y1, color='darkgreen', linestyle=':', label='y = x^3')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Wykres funkcji y = x^3')
+plt.legend()
+plt.subplot(2, 1, 2)
+plt.plot(x, y2, color='orange', linestyle='--', label='y = e^x')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Wykres funkcji y = e^x')
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+
+#zadanie 3
+print("\n\n\nzadanie 3\n")
+df = pd.read_csv('taxis.csv')
+
+# Jaka była największa opłata w żółtej taksówce?
+najwieksza_oplata_zolta = df[df['color'] == 'yellow']['fare'].max()
+print("Największa opłata w żółtej taksówce:", najwieksza_oplata_zolta)
+
+# Ile taksówek każdego koloru jest w tabelce?
+liczba_taksowek_kolor = df['color'].value_counts()
+print("Liczba taksówek każdego koloru:\n", liczba_taksowek_kolor)
+
+# Narysuj wykres punktowy zależności odległości od opłaty. Kolor punktów musi odpowiadać kolorowi taksówki.
+plt.scatter(df['distance'], df['fare'], c=df['color'])
+plt.xlabel('Odległość')
+plt.ylabel('Opłata')
+plt.title('Zależność odległości od opłaty')
+plt.show()
+
+# Narysuj wykres słupkowy zależności sumy wszystkich płatności od sposobu opłaty.
+suma_platnosci_payment = df.groupby('payment')['fare'].sum()
+suma_platnosci_payment.plot(kind='bar')
+plt.xlabel('Sposób opłaty')
+plt.ylabel('Suma płatności')
+plt.title('Suma płatności w zależności od sposobu opłaty')
+plt.show()
+
+
+#zadanie 4
+print("\n\n\nzadanie 4\n")
+df = sns.load_dataset('attention')
+sns.boxplot(x='attention', y='score', hue='subject', data=df, palette='Blues')
+plt.show()
