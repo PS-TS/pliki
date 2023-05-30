@@ -1,0 +1,41 @@
+glue = sns.load_dataset("glue")
+
+ERNIE = glue[glue['Model'] == 'ERNIE']
+T5 = glue[glue['Model'] == 'T5']
+RoBERTa = glue[glue['Model'] == 'RoBERTa']
+BERT = glue[glue['Model'] == 'BERT']
+BiLSTM_ELMo = glue[glue['Model'] == 'BiLSTM+ELMo']
+BiLSTM_CoVe = glue[glue['Model'] == 'BiLSTM+CoVe']
+BiLSTM_Attn = glue[glue['Model'] == 'BiLSTM+Attn']
+BiLSTM = glue[glue['Model'] == 'BiLSTM']
+
+sns.set()
+fig, axes = plt.subplots(1, 8, figsize=(15, 5), sharey=True)
+plt.suptitle ("Glue")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=ERNIE, kind="violin", ax=axes[0])
+axes[0].set_title("ERNIE")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=T5, kind="violin", ax=axes[1])
+axes[1].set_title("T5")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=RoBERTa, kind="violin", ax=axes[2])
+axes[2].set_title("RoBERTa")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=BERT, kind="violin", ax=axes[3])
+axes[3].set_title("BERT")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=BiLSTM_ELMo, kind="violin", ax=axes[4])
+axes[4].set_title("BiLSTM_ELMo")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=BiLSTM_CoVe, kind="violin", ax=axes[5])
+axes[5].set_title("BiLSTM_CoVe")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=BiLSTM_Attn, kind="violin", ax=axes[6])
+axes[6].set_title("BiLSTM_Attn")
+
+sns.catplot(x='Year', y='Score', hue="Encoder", data=BiLSTM, kind="violin", ax=axes[7])
+axes[7].set_title("BiLSTM")
+
+
+plt.show()
