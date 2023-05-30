@@ -1,0 +1,54 @@
+#Ignaszewski Cezary 169246 (wariant 16)
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+Nazwy=np.array(['Amazonka','Nil','Jangcy','Missisipi-Missouri','Huang He','Ob Irtysz','Kongo','Mekong','Amur','Lena','Parana','Mackanzie','Niger','Jenisej','Wołga'])
+Kontynenty=np.array(['Ameryka Południowa','Afryka','Eurazja','Ameryka Północna','Eurazja','Eurazja','Afryka','Eurazja','Eurazja',
+                     'Eurazja','Ameryka Południowa','Ameryka Północna','Afryka','Eurazja','Eurazja'])
+Dlugosc_w_km=np.array([7040,6695,6300,6020,5464,5410,4700,4500,4440,4400,4380,4240,4160,4102,3530])
+Powierzchnia_dorzecza_tys_km=np.array([7200,2870,1807,3229,752,2972,3690,810,1855,2490,3100,1760,2117,2580,1360])
+Liczba_panstw_przeplywajacych=np.array([3,7,1,1,1,3,3,6,3,1,3,1,4,2,2])
+
+#Liczba rzek (można dać jakikolwiek wektor, odpowiedź ta sama)
+print(np.count_nonzero(Nazwy))
+#Tylko eurazja
+print(np.count_nonzero(Kontynenty[Kontynenty=='Eurazja']))
+#Litery późniejsze niż N
+print(Nazwy[Nazwy>'O'])
+#Rzeki przepływające więcej niz 2 państwa
+print(np.count_nonzero(Nazwy[Liczba_panstw_przeplywajacych>2]))
+#Rzeki z długością nie mniejszą niż 4500km w eurazji lub afryce
+print(Nazwy[(Dlugosc_w_km>=4500) & ((Kontynenty=='Eurazja') | (Kontynenty=='Afryka'))])
+#Posortuj rzeki malejąco
+
+#zadanie 2
+
+x=np.linspace(0,2,100)
+x2=np.linspace(0,512,100)
+fig,ax=plt.subplots(1,2)
+ax[0].plot(x,x**3,'darkred',linestyle='dotted',label='x^3')
+ax[1].plot(x2,x2**(1/3),'darkgreen',linestyle='--',label='\sqrt[3]{x}')
+fig.legend(title='Wykres',loc='lower right')
+plt.show()
+
+#zadanie 3
+data=pd.read_csv('galaxies.csv',sep=',',decimal='.')
+#Największy dystans metodą Transit
+print(data[data['method']=='Transit']['distance'].max())
+#Najwięcej galaktyk
+print(data.groupby('year')['method'].count().max())
+#Wykres kołowy
+data2=data.groupby('method')['method'].count()
+plt.pie(data2,labels=data2.index)
+plt.show()
+#Wykres punktowy
+
+plt.scatter(y=data['distance'],x=data['year'])
+plt.show()
+
+#zadanie 4
+data3=sns.load_dataset('exercise')
+sns.relplot(data3,x='time',y='pulse',col='kind',hue=data3['diet'])
+plt.show()
