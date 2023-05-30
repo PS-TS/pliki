@@ -1,0 +1,83 @@
+# Góralczyk Maciej 169241 wariant 13
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Ćwiczenie 13.1
+
+sex = np.array(['Mężczyzna', 'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta', 'Mężczyzna', 'Kobieta', 'Mężczyzna', 'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta', 'Kobieta', 'Mężczyzna', 'Mężczyzna', 'Kobieta', 'Mężczyzna'])
+age = np.array([20, 30, 21, 34, 45, 21, 17, 18, 19, 23, 36, 69, 34, 58, 23, 44, 12])
+place_of_living = np.array(['Wieś', 'Miasto', 'Wieś', 'Miasto', 'Wieś', 'Miasto', 'Miasto', 'Miasto', 'Wieś', 'Miasto', 'Miasto', 'Wieś', 'Miasto', 'Miasto', 'Wieś', 'Wieś', 'Miasto'])
+smoking = np.array(['Tak', 'Tak', 'Tak', 'Nie', 'Nie', 'Tak', 'Nie', 'Nie', 'Tak', 'Nie', 'Nie', 'Tak', 'Tak', 'Tak', 'Nie', 'Nie', 'Nie'])
+
+# Ile osób jest w tabelce?
+people_count = len(sex)
+print(f'Ile osób jest w tablce: {people_count}')
+
+# Ile jest kobiet?
+women_count = len(sex[sex == 'Kobieta'])
+print(f'Ile jest kobiet?: {women_count}')
+
+# Ile osób w wieku poniżej 40 lat pali?
+mid_age_smoking = age[np.logical_and(age < 40, smoking == 'Tak')]
+print(f'Ile osób w wieku poniżej 40 lat pali?: {len(mid_age_smoking)}')
+
+# Gdzie mieszka większość palących kobiet: na wsi czy w mieście?
+women_smoking_rural = place_of_living[np.logical_and(np.logical_and(sex == 'Kobieta', smoking == 'Tak'), place_of_living == 'Wieś')]
+women_smoking_urban = place_of_living[np.logical_and(np.logical_and(sex == 'Kobieta', smoking == 'Tak'), place_of_living == 'Miasto')]
+print(f'Kobiet palących na wsi jest: {len(women_smoking_rural)}')
+print(f'Kobiet palących w mieście jest: {len(women_smoking_urban)}')
+print(f'Kobiet palących jest po równo w mieście oraz na wsi')
+
+# Jaki jest średni wiek osób palących i niepalących
+avg_age_of_people_smoking_count = age[smoking == 'Tak'].mean()
+avg_age_of_people_no_smoking = age[smoking == 'Nie'].mean()
+print(f'Średni wiek osób palących to: {avg_age_of_people_smoking_count}')
+print(f'Średni wiek osób niepalących to: {avg_age_of_people_no_smoking}')
+
+
+# Ćwiczenie 13.2
+
+x = np.linspace(0, 1, 30)
+plt.subplot(1, 2, 1)
+plt.plot(x, x**2, c='darkred')
+plt.legend(['x^2'])
+plt.subplot(1, 2, 2)
+plt.scatter(x, np.sqrt(x), c='navy', marker='.')
+plt.legend(['sqrt(x)'])
+plt.show()
+
+
+# Ćwiczenie 13.3
+
+df = pd.read_csv('titanic.csv', delimiter=',', header=0)
+
+# Ile kobiet z pierwszej klasy przeżyło?
+women = df[df['sex'] == 'female']
+women_survived = women[women['survived'] == 1]
+first_class_women_survived = women_survived[women_survived['class'] == 'First']
+print(f'Ile kobiet z pierwszej klasy przeżyło? {len(first_class_women_survived)}')
+
+# Jaki jest średni wiek mężczyzn, którzy nie przeżyli?
+man = df[df['sex'] == 'male']
+man_no_survived = man[man['survived'] == 0]
+print(f'Jaki jest średni wiek mężczyzn, którzy nie przeżyli? {man_no_survived["age"].mean()}')
+
+# Narysuj wykres punktowy w zależności od opłaty (fare) i od wieku pasażera, kolorem zaznacz płeć
+plt.scatter(man['age'], man['fare'], c='red')
+plt.scatter(women['age'], women['fare'], c='blue')
+plt.show()
+
+# Narysuj wykres słupkowy procentu osób, którzy przeżyli, w zależności od klasy
+class_grouped_survivors = df.groupby('class')['survived'].sum()
+class_grouped_survivors.plot(kind='bar')
+plt.xticks(rotation='vertical')
+plt.show()
+
+
+# Ćwiczenie 13.4
+
+iris = sns.load_dataset('iris')
+sns.scatterplot(x='petal_length', y='petal_width', s=iris['sepal_length']*3, color='green', hue='sepal_width', markers=['o', 'x', ','], data=iris)
+plt.show()
