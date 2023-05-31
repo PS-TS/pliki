@@ -1,0 +1,1475 @@
+zajecia 9. bo 8 to kolokwium bylo
+wstęp 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    printf("%d\n", sizeof(char));
+    printf("%d\n", sizeof(wchar_t));
+    printf("%d\n",'A');
+    printf("%d\n",'B');
+    printf("%d\n",'!');
+    for(int i=0;i<=127;i++){
+        printf("%d %c \n", i , i);
+    }
+}
+
+zadanie 5.2.1
+
+#include <stdio.h>
+#include <stdlib.h>
+void wyczysc(char *napis){
+napis[0]=0;
+}
+int main()
+{
+   ///cw 5_2_1
+   printf("\n cw 5_2_1\n");
+   char *napis = "pieczewo";
+   printf(napis);
+   printf("\n");
+   printf("co nam wyswietli po wyczyszczeniu");
+   wyczysc(napis);
+   printf(napis);
+   free(napis);
+}
+
+zadanie 5.2.2
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+    
+    int i = 0;
+    while(napis[i]!=0){
+      
+        i+=1;
+    }
+return i;
+}
+int main()
+{
+   ///cw 5_2_2
+   printf("\n cw 5_2_2\n");
+   char *napis = "pieczewo";
+   printf(napis);
+   printf("\n");
+   printf("dlugosc napisu: ");
+   printf("%d", dlugosc(napis));
+
+}
+
+zadanie 5.2.3
+
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+
+    int i = 0;
+    while(napis[i]!=0){
+
+        i+=1;
+    }
+    return i;
+}
+int porownaj(char *napis1, char *napis2){
+  if (dlugosc(napis1)!=dlugosc(napis2)){
+    return 0;
+  }
+    for(int i = 0; i < dlugosc(napis1); i++){
+        if(napis1[i] != napis2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+int main()
+{
+   ///cw 5_2_3
+   printf("\n cw 5_2_3\n");
+   char *napis1 = "pieczewo";
+   char *napis2 = "pieczewo";
+   printf("Napisy sa: ");
+   if(porownaj(napis1, napis2)){
+    printf("identyczne");
+   }
+   else{
+    printf("rozne");
+   }
+
+
+}
+
+zadanie 5.2.4
+
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+
+    int i = 0;
+    while(napis[i]!=0){
+
+        i+=1;
+    }
+    return i;
+}
+int porownaj(char *napis1, char *napis2){
+  if (dlugosc(napis1)!=dlugosc(napis2)){
+    return 0;
+  }
+    for(int i = 0; i < dlugosc(napis1); i++){
+        if(napis1[i] != napis2[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+int wczesniej(char *napis1, char *napis2){
+    int n = 0;
+  if (dlugosc(napis1)>dlugosc(napis2)){
+    n = dlugosc(napis1);
+  }
+  else {
+    n = dlugosc(napis2);
+  }
+  if(porownaj(napis1,napis2)){
+    return 0;
+  }
+    for(int i = 0; i < n; i++){
+        if(napis1[i] < napis2[i]){
+            return 1;
+        }
+        else if(napis1[i]>napis2[i]){
+            return 0;
+        }
+    }
+
+}
+int main()
+{
+   ///cw 5_2_4
+   printf("\n cw 5_2_4\n");
+   char *napis1 = "sam";
+   char *napis2 = "sama";
+
+   printf("%d" ,wczesniej(napis1, napis2));
+
+
+
+}
+
+zadanie 5.2.5
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+
+    int i = 0;
+    while(napis[i]!=0){
+
+        i+=1;
+    }
+    return i;
+}
+void przepisz(char *napis1, char *napis2){
+    for(int i = 0; i <dlugosc(napis1); i++){
+        napis2[i] = napis1[i];
+    }
+    napis2[dlugosc(napis1)]=0;
+}
+int main()
+{
+   ///cw 5_2_5
+   printf("\n cw 5_2_5\n");
+   char *napis1 = "arbuz";
+   char napis2[20] = "arbiter";
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+   printf("po przepisaniu: \n");
+   przepisz(napis1,napis2);
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+
+
+
+
+
+
+}
+
+zadanie 5.2.6
+
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+
+    int i = 0;
+    while(napis[i]!=0){
+
+        i+=1;
+    }
+    return i;
+}
+void kopiujn(char *napis1, char *napis2, int n){
+    if(n>dlugosc(napis1)){
+        n = dlugosc(napis1);
+    }
+    for(int i = 0; i <n; i++){
+        napis2[i] = napis1[i];
+    }
+    napis2[n]=0;
+}
+int main()
+{
+   ///cw 5_2_6
+   printf("\n cw 5_2_6\n");
+   char *napis1 = "informatyka";
+   char napis2[20] = "matematyka";
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+   printf("po przepisaniu: \n");
+   kopiujn(napis1,napis2,4);
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+
+}
+
+
+zadanie 5.2.7
+#include <stdio.h>
+#include <stdlib.h>
+int dlugosc(char *napis){
+
+    int i = 0;
+    while(napis[i]!=0){
+
+        i+=1;
+    }
+    return i;
+}
+void sklej(char *napis1, char *napis2, char *napis3){
+    int i ;
+    int n=0;
+    if(dlugosc(napis1)>dlugosc(napis2)){
+        n = dlugosc(napis1);
+    }
+    else{
+        n = dlugosc(napis2);
+    }
+   for(i = 0; i<n ; i++){
+    napis3[i] = napis1[i];
+    napis3[i+dlugosc(napis1)]= napis2[i];
+   }
+
+}
+int main()
+{
+   ///cw 5_2_7
+   printf("\n cw 5_2_7\n");
+   char *napis1 = "Ala m";
+   char *napis2 = "a kota.";
+   char napis3[20];
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+   printf("po zlaczeniu: \n");
+   sklej(napis1,napis2,napis3);
+   printf(napis3);
+   printf("\n");
+
+}
+zadanie 5.2.13
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void wytnijtm(char *napis1, char *napis2){
+int i,j;
+for(i=0,j=0;napis1[i]!=0; i++){
+    if(napis1[i]!=napis2[i]){
+        if(j<i){
+            napis1[j] = napis1[i];
+            j++;
+
+    }
+    napis1[j]=0;
+    }}}
+int main()
+{
+   ///cw 5_2_10
+   printf("\n cw 5_2_7\n");
+   char napis1[40] = "arbuzek";
+   char *napis2 = "arbiter";
+   printf(napis1);
+   printf("\n");
+   printf(napis2);
+   printf("\n");
+   wytnijtm(napis1,napis2);
+   printf(napis1);
+   printf("\n");
+
+}
+
+
+zadanie 5.2.20
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+char* godzina(int godzina, int minuty, int sekundy){
+char* wynik=malloc(9*sizeof(char));
+sprintf(wynik, "%02d:%02d:%02d", godzina, minuty, sekundy);
+return wynik;
+}
+int main()
+{
+   ///cw 5_2_20
+   printf("\n cw 5_2_20\n");
+  int godziny = 7;
+  int minuty = 48;
+  int sekundy = 5;
+  printf(godzina(godziny, minuty, sekundy));
+
+
+}
+
+zadanie 5.2.26
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <wchar.h>
+
+void maleduze(char* napis){
+int i;
+for(i=0;napis[i]!=0;i++)
+    {
+        napis[i] = towupper(napis[i]);
+    }
+}
+int main()
+{
+   ///cw 5_2_20
+   printf("\n cw 5_2_26\n");
+   char napis[80]= "do zmiany, TROCHE DUZYCH, symbole arytmetyczne 2+2=4";
+   printf(napis);
+   printf("\n");
+   maleduze(napis);
+   printf(napis);
+
+
+
+}
+
+zadanie 5.2.22 niedokończone, rozwiazanie w skrypcie
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <wchar.h>
+#include <string.h>
+
+char* sklejnapisy(char* napis1, char* napis2, char* napis3){
+char* wynik = malloc((strlen(napis1)+strlen(napis2)+strlen(napis3)+1)*sizeof(char));
+
+}
+
+int main()
+{
+   ///cw 5_2_22
+   printf("\n cw 5_2_22\n");
+   char napis[80]= "do zmiany, TROCHE DUZYCH, symbole arytmetyczne 2+2=4";
+   printf(napis);
+   printf("\n");
+   maleduze(napis);
+   printf(napis);
+
+
+
+}
+
+wstep tablice wielowymiarowe
+#include <stdio.h>
+#include <stdlib.h>
+
+//cw 6_2_1
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+
+//cw 6_2_2
+int(* alokuj2(unsigned int n, unsigned int m))[]{
+return malloc(n*sizeof(int[m]));
+}
+
+//cw 6_2_18
+void wypisz(int **t, unsigned int n, unsigned int m){
+    for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+}
+void wypisz2(unsigned int n, unsigned int m, int t[][m]){
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+}
+//wczytaj
+void wczytaj(int** t, unsigned int n, unsigned int m){
+   for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            scanf("%d ", &t[i][j]);
+        }
+    }
+}
+
+void wczytaj2(unsigned int n, unsigned int m, int t[][m]){
+     for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            scanf("%d ", &t[i][j]);
+        }
+    }
+}
+
+//cw 6_2_3
+void zwolnij(unsigned int n, unsigned int n, int **t){
+int i;
+for(i =0; i<n;i++){
+    free(t[i]);
+}
+
+//cw 6_2_4
+void zwolnij2(unsigned int n, int t[][n]){
+free(t)
+}
+int main()
+{
+
+//tablica tablic
+int **t = alokuj(3,3);
+wczytaj(t,3,3);
+wypisz(t,3,3);
+//tablica dwuwymiarowa
+int t2[3][3];
+wczytaj2(3,3,t2);
+wypisz2(3,3,t2);
+//inicjalizacja bezposrednia
+int t3[4][4] = {{20,2,5,8},{2,8,31,4},{5,6,7,8},{5,6,7,8}};
+wypisz2(4,4,t3);
+
+
+}
+
+
+
+nie dziala, usuwanie 1 napotkanego wyrazu z 2 tablicy w pierwszej
+
+void wytnij2 ( char* nap1 , char* nap2 ) {
+int i, dl;
+for (dl =0; nap2[dl] != 0; dl++);
+for (i =0; nap1[i] != 0; i++)
+    if (porownaj(nap1, nap2, i)){
+        wytnij(nap1, i, i+dl−1);
+}
+}
+
+porownywanie tablic
+bool porownaj (char* nap1 ,char* nap2,int n ) {
+int i;
+for (i = 0 ;(nap1[i] != 0)&&(nap2[i]!= 0 );i++)
+if (nap1[n+i] != nap2 [i]){
+return false;
+}
+if (nap2[i]==0){
+return true;
+}
+else
+return false;
+}
+
+wycinanie tych samych znakow
+void wytnijtm(char* nap1, char* nap2){
+int i, j;
+for (i=0,j=0;nap1[i]!=0;i++){
+    if(nap1[i]!=nap2[i]){
+        if (j<i){
+            nap1[j]=nap1[i];
+            j++;
+        }
+    }
+    nap1[j]=0;
+}
+}
+
+
+char *godzina(int godzina, int minuta, int sekunda){
+    char*kkkk=malloc(9*sizeof(char));
+    sprintf(kkkk,"%02d:%02d:%02d",godzina,minuta,sekunda);
+    return kkkk;
+}
+
+char *sklej(char *nap1,char* nap2, char* nap3){
+    char*kkk=malloc((strlen(nap1)+strlen(nap2)+strlen(nap3)+1)*sizeof(char));
+    strcpy(kkk,nap1);
+    strcat(kkk,nap2);
+    strcat(kkk,nap3);
+    return kkk;
+}
+
+int ** alokuj(unsigned int n, unsigned int m){
+	int **t=malloc(n*sizeof(int*));
+	int i;
+	for(i=0;i<n;i++){
+t[i]=malloc(m*sizeof(int));
+}
+return t;
+}
+
+int (*alokuj(unsigned int n, unsigned int m)){
+return malloc(n*sizeof(int[m]));
+}
+
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            scanf("%d",t[i][j]);
+        }
+    }
+}
+\\\ tablica tablic
+int main(){
+int **t=alokuj(3,3);
+wczytaj(t,3,3);
+wypisz(t,3,3);
+
+/// tablcia dwuwymiarowa
+int t2[3][3];
+wczytaj2(3,3,t2);
+wypisz2(3,3,t2);
+
+/// inicjalizacja bez wczytywania
+int t3[4][4]={(20,2,3,4),(2,9,31,4),(5,6,7,8),(5,4,4,7)};
+wypisz2(4,4,t3);
+
+int ** alokuj_trojkatna(unsigned int n){
+int **t=malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++){
+t[i]=malloc((i+1)*sizeof(int));    
+}
+return(t);
+}
+
+void wypisz_trojkatna(int **t, unsigned int n){
+    int i,j;
+    for(i=0;i<n;i++){
+        for (j=0;j<n;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void skanuj_trojkatna(int **t, unsigned int n){
+    int i,j;
+    for(i=0;i<n;i++){
+        for (j=0;j<n;j++){
+            scanf("%d\t",t[i][j]);
+        }
+    }
+}
+
+int main(){
+int** trojkatna=alokuj_trojkatna(3);
+wczytaj_trojkatna(trojkatna,3);
+wypisz_trojkatna(trojkatna,3);
+}
+
+void zeruj(int **t, unsigned int n, unsigned int m){
+int i,j;
+for(i=0;i<n;i++){
+for(j=0;j<n;j++{
+t[i][j]=0;
+}
+}
+}
+
+void zeruj_szachownica(int **t, unsigned int n, unsigned int m){
+int i,j;
+for(i=0;i<n;i++){
+for(j=0;j<n;j++){
+    if(i+j/2==0){
+t[i][j]=0;
+    }
+}
+}
+}
+void zwolnij(unsigned int n, int t[][n]){
+free(t);
+}
+zadanie 6.2.13
+
+
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int t[][m]){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+int suma(unsigned int n, unsigned int m, int t[][m]){
+    int i,j;
+    int wynik = 0;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            wynik = wynik + t[i][j];
+        }
+}return wynik;
+    }
+int main()
+{
+    int tablica[3][4] = {{4,7,1,8}, {5,8,1,6}, {9,0,17,53}};
+    wypisz(3,4,tablica);
+    printf("%d", suma(3,4,tablica));
+}
+
+
+druga wersja 
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            scanf("%d",t[i][j]);
+        }
+    }
+}
+int suma(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    int wynik =0;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            wynik = wynik + t[i][j];
+        }
+
+    }
+    return wynik;
+}
+int main()
+{
+    int** tablica = alokuj(3,4);
+    wczytaj(3,4,tablica);
+    wypisz(3,4,tablica);
+    printf("%d", suma(3,4,tablica));
+}
+
+
+
+zadanie 6.2.16
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            scanf("%d",&t[i][j]);
+        }
+    }
+}
+int indeks_wiersza(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    int suma = 0;
+    int maksimum;
+
+    int indeks = 0;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            suma = suma + t[i][j];
+        }
+        if(i==0){
+            maksimum = suma;
+        }
+        if(suma>maksimum){
+            maksimum = suma;
+            indeks = i;
+        }
+
+    }
+    return indeks;
+}
+int main()
+{
+    int** tablica = alokuj(3,3);
+    wczytaj(3,3,tablica);
+    wypisz(3,3,tablica);
+    printf("%d", indeks_wiersza(3,3,tablica));
+}
+
+zadanie 6.2.17
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+}
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            scanf("%d",&t[i][j]);
+        }
+    }
+}
+int indeks_wiersza(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    int suma = 0;
+    int maksimum;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            suma = suma + t[i][j];
+        }
+        if(i==0){
+            maksimum = suma;
+        }
+        if(suma>maksimum){
+            maksimum = suma;
+        }
+    }
+    return (float)(maksimum)/m;
+}
+int main()
+{
+    int** tablica = alokuj(3,3);
+    wczytaj(3,3,tablica);
+    wypisz(3,3,tablica);
+    printf("%f", indeks_wiersza(3,3,tablica));
+}
+
+
+zadanie 6.2.19
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz2(unsigned int n, unsigned int m, int t[][m]){
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+    printf("\n");
+}
+void przepisz(unsigned int n, unsigned int m, int pierwsza[][m], int druga[][m]){
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            druga[i][j] = pierwsza [i][j];
+        }
+
+    }
+}
+
+int main()
+{
+    int tablica1[2][3]= {{5,7,1},{4,8,9}};
+    int tablica2[2][3]= {{20,14,5},{1,6,11}};
+    wypisz2(2,3,tablica1);
+    wypisz2(2,3,tablica2);
+    przepisz(2,3,tablica1, tablica2);
+    wypisz2(2,3,tablica1);
+    wypisz2(2,3,tablica2);
+}
+
+zadanie 6.2.20
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz2(unsigned int n, unsigned int m, int t[][m]){
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            printf("%d ", t[i][j]);
+        }
+    printf("\n");
+    }
+    printf("\n");
+}
+void przepisz(unsigned int n, unsigned int m, int pierwsza[][m], int druga[][m]){
+    int temp =0;
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m; j++){
+            temp = pierwsza [i][j];
+            pierwsza[i][j] = druga[i][j];
+            druga[i][j]= temp;
+        }
+
+    }
+}
+
+
+int main()
+{
+    int tablica1[2][3]= {{5,7,1},{4,8,9}};
+    int tablica2[2][3]= {{20,14,5},{1,6,11}};
+    wypisz2(2,3,tablica1);
+    wypisz2(2,3,tablica2);
+    przepisz(2,3,tablica1, tablica2);
+    wypisz2(2,3,tablica1);
+    wypisz2(2,3,tablica2);
+}
+
+
+zadanie 6.2.21
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+}
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            scanf("%d",&t[i][j]);
+        }
+    }
+}
+void zamien(unsigned int n, unsigned int m, int **tablica){
+    int temp =0;
+       for( int i = 0; i <n; i++){
+        for(int j = 0; j < m/2; j++){
+            temp = tablica[i][j];
+            tablica[i][j] = tablica[i][m-j-1];
+            tablica[i][m-j-1]= temp;
+        }
+
+    }
+}
+int main()
+{
+    int** tablica = alokuj(2,3);
+    wczytaj(2,3,tablica);
+    wypisz(2,3,tablica);
+    zamien(2,3,tablica);
+    wypisz(2,3,tablica);
+
+}
+
+ćwiczenie domowe : odwrócić po kolumnach
+
+
+zadanie 6.2.23
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+void wypisz(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            printf("%d\t",t[i][j]);
+        }
+        printf("\n");
+    }
+     printf("\n");
+}
+int** alokuj(unsigned int n, unsigned int m){
+int **t = malloc(n*sizeof(int*));
+int i;
+for(i=0;i<n;i++)
+    {
+        t[i] = malloc(m*sizeof(int));
+    }
+return t;
+}
+void wczytaj(unsigned int n, unsigned int m, int **t){
+    int i,j;
+    for (i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            scanf("%d",&t[i][j]);
+        }
+    }
+}
+void zamien(unsigned int n, unsigned int m, int **tablica){
+    int temp ;
+
+        for(int j = 0; j < m; j++)  {
+            temp = tablica[n-1][j];
+            for( int i = n-2; i >=0; i--){
+            tablica[i+1][j] = tablica[i][j];
+        }
+        tablica[0][j] = temp;
+    }
+}
+
+int main()
+{
+    int** tablica = alokuj(3,3);
+    wczytaj(3,3,tablica);
+    wypisz(3,3,tablica);
+    zamien(3,3,tablica);
+    wypisz(3,3,tablica);
+
+}
+void odwroc(int **t, unsigned int n, unsigned int m){
+    int i;
+    for(i=0;i<n;i++){
+        swap(n,t[i]);
+    }
+}
+
+void przesuwanie(unsigned int n, unsigned int m, int ** t){
+    int i,j,x;
+    for(i=0;i<m;i++){
+        x=t[n-1][i];
+        for(j-n-1;j>0;j--){
+            t[j][i]=t[j-1][i];
+            t[0][i]=x;
+        }
+    }
+}
+
+zadanie dodatkowe
+
+int **piramida(int n){
+    int dist;
+    int **tab=malloc(n*sizeof(int *));
+    for(int i=0; i<n;i++){
+        tab[i]=malloc(n*sizeof(int));
+        for(int j=0;j<n;j++){
+                if(i < j){
+            int dist=i;
+                }
+                else{
+                    dist=j;
+                }
+            dist = dist < n - i ? dist :n -i-1;
+            dist=dist < n - j ? dist:n-j-1;
+            tab[i][j]=dist+1;
+        }
+    }
+    return tab;
+}
+
+void print(int **array, int n){
+for (int i=0;i<n;i++){
+    for(int j=0;j<n;j++){
+        printf("%d", array[i][j]);
+    }
+    printf("\n");
+}
+}
+
+
+int main()
+{
+    int n=5;
+    int **arr=piramida(n);
+    print(arr,n);
+
+}
+
+
+ćwiczenie domowe: przerobić na tablice dwuwymiarowe, przerobić na funkcje wiersze w gore,
+zrobic 6.2.24
+odwróć wiersz, w których jest najwięcej elementów parzystych.
+policz sumę elementow nieparzystych, znajduących się kolumnie parzystej itd,
+podmienić wszystkie spacje na podkreślniki, usunąć wszystkie spacje,
+zwrócić 1 jeśli pierwszy napis jest wcześniej w kolejności leksykograficznej, 
+0 w przeciwnym razie, nie rozróżniając wielkich i małych liter,
+policz ile w napisie jest samogłosek, który znak występuje najczęściej,
+wytnij z napisu wszystkie litery a, jeżeli za literą a stoi samogłoska
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct trojkat
+{
+    double a,b,c;
+};
+
+double obwod(struct trojkat t)
+{
+    return t.a+t.b+t.c;
+}
+double pole(struct trojkat t)
+{   double p;
+    p = (t.a+t.b+t.c)/2;
+    return sqrt(p*(p-t.a)*(p-t.b)*(p-t.c));
+}
+bool czyTrojkat(struct trojkat t){
+    if(t.a<0 || t.b <0 || t.c < 0){
+        return 0;
+    }
+    if((t.a+t.b<=t.c)||(t.a+t.c<=t.b)||(t.b+t.c<=t.a)){
+        return 0;
+    }
+    return 1;
+}
+
+int main()
+{
+   struct trojkat t1;
+   t1.a = 10;
+   t1.b = 14;
+   t1.c = -5;
+   printf("Obwod: %f\n", obwod(t1));
+   printf("%d\n", sizeof(double));
+   printf("%d\n", sizeof(struct trojkat));
+    printf("Pole: %f\n", pole(t1));
+    printf("Czy jest to trojkat:");
+    if(czyTrojkat(t1)){
+        printf("jest to trojkat");
+
+    }
+    else{
+        printf("nie jest to trojkat");
+    }
+
+}
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct trojkat
+{
+    double a,b,c;
+};
+
+
+double obwod(struct trojkat t)
+{
+    return t.a+t.b+t.c;
+}
+
+void przepisz(struct trojkat troj1, struct trojkat *troj2)
+{
+*troj2 = troj1;
+}
+
+void wypisz(struct trojkat tr1){
+printf("%f\n",tr1.a);
+printf("%f\n",tr1.b);
+printf("%f\n",tr1.c);
+printf("\n");}
+
+void zamien(struct trojkat *troj1, struct trojkat *troj2)
+{ struct trojkat temp;
+    temp = *troj1;
+    *troj1 = *troj2;
+    *troj2= temp;
+}
+int main()
+{
+   struct trojkat t1;
+   t1.a = 3;
+   t1.b = 4;
+   t1.c = 5;
+   struct trojkat t2;
+   t2.a =1;
+   t2.b =1;
+   t2.c =1;
+   struct trojkat *wsk2 = &t2;
+   wypisz(t1);
+   wypisz(t2);
+   zamien(&t1, &t2);
+   wypisz(t1);
+   wypisz(t2);
+   printf("Obwod: %f\n", obwod(t1));
+   printf("%d\n", sizeof(double));
+   printf("%d\n", sizeof(struct trojkat));
+
+
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct punkt
+{
+    double x,y,z;
+};
+
+double odleglosc(struct punkt p1, struct punkt p2)
+{
+    return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)+(p1.z-p2.z)*(p1.z-p2.z));
+}
+
+double minimum(struct punkt tab[], int n){
+int i, j;
+double pom;
+double min = sqrt(pow(tab[1].x-tab[0].x,2)+pow(tab[1].y-tab[0].y,2)+pow(tab[1].z-tab[0].z,2));
+for(i=0; i<n-1;i++){
+    for(j=i+1;j<n; j++){
+        pom = odleglosc(tab[j],tab[i]);
+    }
+    if(pom<min){
+        min = pom;
+    }
+}
+return min;
+}
+
+int main()
+{   struct punkt p1;
+    struct punkt p2;
+    struct punkt p3;
+    p1.x = 1;
+    p1.y = 3;
+    p1.z = 7;
+    p2.x = 2;
+    p2.y = 6;
+    p2.z = 4;
+    p3.x = 2;
+    p3.y = 8;
+    p3.z = 5;
+    struct punkt tab[3] = {p1,p2,p3};
+    printf("%f", minimum(tab,3));
+
+
+
+}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+
+struct zespolone
+{
+    double re,im;
+};
+struct zespolone dodaj(struct zespolone z1, struct zespolone z2){
+    struct zespolone suma;
+    suma.im = z1.im + z2.im;
+    suma.re = z1.re + z2.re;
+    return suma;
+
+}
+
+void wyswietl(struct zespolone z){
+    printf("Ta liczba to %f + %f i\n", z.re, z.im);
+}
+
+void wczytaj_liczbe_zespolona(struct zespolone liczba){
+    scanf("%lf",&liczba.re);
+    scanf("%lf",&liczba.im);
+}
+double modul_liczby_zespolonej(struct zespolone liczba)
+{
+return sqrt(pow(liczba.re,2)+pow(liczba.im,2));
+}
+
+
+
+int main()
+{
+    struct zespolone z1;
+    struct zespolone z2;
+    z1.re = 1;
+    z1.im = 2;
+    z2.re = -1;
+    z2.im = 3;
+    wyswietl(dodaj(z1,z2));
+
+}
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+///listy bez glowy
+/// cw 7_3_1
+struct element{
+int i;  ///liczba rzeczywista, ktora przechowujemy
+struct element *next;
+};
+struct element *utworz(){
+return NULL;
+};
+///CW 7_3_2
+void wyczysc(struct element *Lista){
+struct element *wsk = Lista;
+while(Lista!=NULL){
+    Lista = Lista -> next;
+    free(wsk);
+    wsk = Lista;
+}
+}
+//cw 7_3_3
+struct element *dodajnapoczatek(struct element *Lista, int a){
+struct element *wsk = malloc(sizeof(struct element));
+wsk -> i = a;
+wsk -> next = Lista;
+return wsk;
+}
+//cw 7_3_4
+struct element *dodajnakoniec(struct element *Lista, int a){
+struct element *wsk;
+wsk -> i = a;
+if(Lista == NULL)
+{
+    Lista = wsk = malloc(sizeof(struct element));
+}
+else 
+{
+    wsk = Lista;
+
+while(wsk -> next !=NULL){
+    wsk = wsk -> next;
+}
+wsk -> next = malloc(sizeof(struct element));
+wsk = wsk -> next;}
+wsk -> i =a;
+wsk -> next = NULL;
+return Lista;
+};
+
+//cw 7_3_5
+struct element *dodajodpowiednio(struct element* Lista, struct element *elem, int a){
+    struct element *wsk = malloc(sizeof(struct element));
+    wsk -> i=a;
+    if(elem == NULL){
+        wsk -> next = Lista;
+        Lista = wsk;
+    }
+    else{
+        wsk -> next = elem -> next;
+        elem -> next = wsk;
+    }
+    return Lista; 
+};
+
+//cw 7_3_6
+struct element *znajdz(struct element *Lista, int a){
+while((Lista!=NULL)&&(Lista->i!=a)){
+    Lista = Lista -> next;
+}
+return Lista;
+    
+};
+
+//cw 7_3_7
+struct element *usun(struct element *Lista, int a){
+    struct element *wsk, *wsk2;
+    if(Lista == NULL){
+        return Lista;
+    }
+    wsk = Lista;
+    if(Lista -> i==a){
+        Lista = Lista ->next;
+        free(wsk);
+    }
+    else{
+        while((wsk->next!=NULL)&&(wsk->next -> i!=a)){
+            wsk = wsk -> next;
+        }
+        if(wsk->next !=NULL){
+            wsk2 = wsk -> next;
+            wsk->next = wsk2 -> next;
+            free(wsk2);
+        }
+        return Lista;
+    }
+    
+    
+};
+
+//cw 7_3_24
+int suma(struct element *Lista){
+    int suma = 0;
+    while(Lista!=NULL){
+        suma = suma + Lista -> i;
+        Lista = Lista -> next;
+    }
+    return suma;
+}
+int dlugosc(struct element *Lista){
+    int dlugosc = 0;
+    while(Lista!=NULL){
+        dlugosc = dlugosc + 1 ;
+        Lista = Lista -> next;
+    }
+    return dlugosc;
+}
+void zeruj(struct element *Lista){
+    while(Lista!=NULL){
+        Lista-> i = 0 ;
+        Lista = Lista -> next;
+    }
+}
+int min(struct element *Lista){
+    int min = Lista -> i;
+    while(Lista!=NULL){
+       if(min> Lista->i){
+        min = Lista ->i;
+       }
+        Lista = Lista -> next;
+    }
+    return min;
+}
+void wypisz(struct element *Lista){
+    while(Lista!=NULL){
+        printf("%d\n", Lista -> i);
+        Lista = Lista -> next;
+    }
+    printf("\n");
+}
+
+struct element *odwroc(struct element *Lista){
+    struct element *temp, *temp2;
+    if((Lista == NULL)||(Lista -> next == NULL)){
+        return Lista;
+    }
+    temp = Lista ->next;
+    temp2 = temp -> next;
+    Lista -> next = NULL;
+    temp-> next = Lista;
+    while(temp2!=NULL){
+        Lista = temp;
+        temp = temp2;
+        temp2 = temp2-> next;
+        temp -> next = Lista;
+    }
+    return temp;
+    
+ struct element* doklej(struct element * lista, struct element * lista2){
+    struct element* w1;
+    if (lista==NULL){
+        return lista2;
+    }
+    w1=lista;
+    while(w1->next!=NULL){
+        w1=w1->next;
+        w1->next=lista2;
+    }
+    return lista;
+    };
+    
+    
+    
+};
+int main()
+{
+    struct element *lista = utworz();
+    lista=dodajnakoniec(lista,4);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, 15);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, -7);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, 9);
+    wypisz(lista);
+    lista=dodajnakoniec(lista, -2);
+    wypisz(lista);
+    lista = dodajnapoczatek(lista,6);
+    wypisz(lista);
+    
+}
