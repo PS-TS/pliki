@@ -1,0 +1,170 @@
+namespace cwiczenia1
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {   int[] tab = { 8, 7, 2, 3, 5 };
+            string wynik = ToString(sortowanie(tab));
+            MessageBox.Show(wynik);
+        }
+        int fib(int n)
+        {
+            if(n == 0)
+            {
+                return 0;
+            }
+            if(n == 1)
+            {
+                return 1;
+            }
+
+            return fib(n - 1) + fib(n - 2);
+        }
+
+        int fib2(int n)
+        {
+            int[] liczby = new int[n+1];
+            liczby[0] = 0;
+            liczby[1] = 1;
+            for(int i = 2; i <= n; i++)
+            {
+                liczby[i] = liczby[i - 1] + liczby[i - 2];
+            }
+            return liczby[n];
+        }
+        int[] sortowanie(int[] tab)
+        {
+            int temp;
+            bool zamiany = true; 
+            
+            while (zamiany)  
+            {   
+                zamiany = false;
+                for(int i = 0; i < (tab.Length-1); i++)
+                {
+                    if (tab[i] > tab[i + 1])
+                    {
+                        temp = tab[i];
+                        tab[i] = tab[i + 1];
+                        tab[i + 1] = temp;
+                        zamiany = true;
+                    }
+                }
+            }
+            
+            return tab;
+        }
+
+        string ToString(int[] tab)
+        {
+            string wynik = " ";
+            for(int i = 0; i < tab.Length; i++)
+            {
+                wynik = wynik + tab[i] + ", ";
+            }
+            return wynik;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+    
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblWynik_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBubbleSort_Click(object sender, EventArgs e)
+        {
+            string napis = tbInput.Text;
+            int[] liczby = convert(napis);
+            liczby = sortowanie(liczby);
+            string wynik = ToString(liczby);
+            lblWynik.Text = wynik;
+        }
+
+        int[] convert(string napis)
+        {
+            var liczbyS = napis.Trim().Split(' ');
+            int[] liczby = new int[liczbyS.Length];
+            for(int i =0; i<liczbyS.Length; i++)
+            {
+                liczby[i] = int.Parse(liczbyS[i]);
+            }
+            return liczby;
+        }
+    }
+}
+
+
+
+
+namespace cwiczenia1
+{
+    public partial class Form1 : Form
+    {
+        String napis = ""; 
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        private void btgraf_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        
+        {   Wezel wezel1 = new Wezel(5);
+            Wezel wezel2 = new Wezel(3);
+            Wezel wezel3 = new Wezel(1);
+            Wezel wezel4 = new Wezel(2);
+            Wezel wezel5 = new Wezel(6);
+            Wezel wezel6 = new Wezel(4);
+            wezel1.dzieci.Add(wezel2);
+            wezel1.dzieci.Add(wezel3);
+            wezel1.dzieci.Add(wezel4);
+            wezel2.dzieci.Add(wezel5);
+            wezel2.dzieci.Add(wezel6);
+            A(wezel1);
+            MessageBox.Show(napis);
+
+        }
+        void A(Wezel w)
+        {
+            for(int i = 0; i < w.dzieci.Count; i++)
+            {
+                A(w.dzieci[i]);
+            }
+            napis += " " + w.wartosc.ToString();
+            
+        }
+    }
+
+    public class Wezel
+    {
+        public int wartosc;
+        public List<Wezel> dzieci = new List<Wezel>();
+        public Wezel(int wartosc)
+        {
+            this.wartosc = wartosc;
+        }
+    }
+
+}
