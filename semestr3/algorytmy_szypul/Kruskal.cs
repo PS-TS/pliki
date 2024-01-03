@@ -25,35 +25,43 @@ namespace kruskal
             Wezel5 n1 = new Wezel5(1);
             Wezel5 n2 = new Wezel5(2);
             Wezel5 n3 = new Wezel5(3);
+            Wezel5 n4 = new Wezel5(4);
 
             graf.listawierzcholkow.Add(n1);
             graf.listawierzcholkow.Add(n2);
             graf.listawierzcholkow.Add(n3);
+            graf.listawierzcholkow.Add(n4);
 
             Krawedz k1 = new Krawedz(n1, n2, 5);
             Krawedz k2 = new Krawedz(n1, n2, 10);
             Krawedz k3 = new Krawedz(n3, n2, 15);
             Krawedz k4 = new Krawedz(n3, n2, 5);
             Krawedz k5 = new Krawedz(n1, n3, 2);
+            Krawedz k6 = new Krawedz(n1, n4, 20);
+            Krawedz k7 = new Krawedz(n4, n3, 12);
+            Krawedz k8 = new Krawedz(n2, n4, 10);
             
             graf.Add(k1);
             graf.Add(k2);
             graf.Add(k3);
             graf.Add(k4);
             graf.Add(k5);
+            graf.Add(k6);
+            graf.Add(k7);
+            graf.Add(k8);
 
             Graf minimalneDrzewo = graf.Kruskal();
 
             MessageBox.Show("Krawędzie minimalnego drzewa rozpinającego:");
             foreach (var krawedz in minimalneDrzewo.listakrawedzi)
             {
-                MessageBox.Show($"{krawedz.wierzcholek1} -- {krawedz.wierzcholek2} : {krawedz.wartosc}");
+                MessageBox.Show($"{krawedz.wierzcholek1.wartosc} -- {krawedz.wierzcholek2.wartosc} : {krawedz.wartosc}");
             }
         }
 
         class Wezel5
         {
-           int wartosc;
+            public int wartosc;
             List<Krawedz> listakrawedzi;
     
             public Wezel5(int wartosc)
