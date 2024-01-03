@@ -96,8 +96,10 @@ namespace kruskal
             this.listakrawedzi = new List<Krawedz>();
         }
 
-        public Graf(Krawedz k) : this()
+        public Graf(Krawedz k)// : this() - odpowiednik super() z javy
         {
+            listawierzcholkow = new List<Wezel5>();
+            listakrawedzi = new List<Krawedz>();
             this.listakrawedzi.Add(k);
             this.listawierzcholkow.Add(k.wierzcholek1);
             this.listawierzcholkow.Add(k.wierzcholek2);
