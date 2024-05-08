@@ -62,3 +62,10 @@ second::(a,b,c)->b
 second(_,y,_)=y
 third::(a,b,c)->c
 third(_,_,z)=z
+
+-- klasa Ord
+compare::Ord a=>a->a->Ordering
+compare a b
+	|a>b = GT
+	|a<b = LT
+	|otherwise = EQ
