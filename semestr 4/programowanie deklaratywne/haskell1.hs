@@ -50,3 +50,15 @@ test1 x y
 	|x==y = 0
 	|x<y = (-1)
  
+sprawdz::Float->String
+sprawdz x
+	|x<0 = "liczba mniejsza od 0"
+	|x>5 = "liczba wieksza od 5"
+	|otherwise = "liczba z przedziału 0-5"
+
+first::(a,b,c)->a
+first(x,_,_)=x
+second::(a,b,c)->b
+second(_,y,_)=y
+third::(a,b,c)->c
+third(_,_,z)=z
