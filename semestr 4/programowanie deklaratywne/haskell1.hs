@@ -74,3 +74,10 @@ compare a b
 -- 1:[2,3]=[1,2,3]
 -- [1,2]++[6,7]=[1,2,6,7]
 -- ['a','b','c','d']!!0='a'
+
+-- (3+4*5:4:[6,[2],3])!!lenght[2,3,4] = [2]
+-- reverse odwraca liste
+-- tail zwraca ogon
+-- length dlugosc
+-- (reverse[5,2,1,7]++tail[2,3])!!head[1,1,3] = 1
+
