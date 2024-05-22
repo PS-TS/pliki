@@ -81,3 +81,46 @@ compare a b
 -- length dlugosc
 -- (reverse[5,2,1,7]++tail[2,3])!!head[1,1,3] = 1
 
+-- kwadrat_lista (def. rekurencyjna)
+kwadrat x=x*x
+kwadrat_lista::[Int]->[Int]
+kwadrat_lista[]=[]
+kwadrat_lista(x:xs)=(kwadrat x):(kwadrat_lista xs)
+
+mniej x=x-1
+listao1::[Int]->[Int]
+listao1[]=[]
+listao1(x:xd)=(mniej x):(listao1 xd)
+
+razy3 x=x*3
+listarazy3::[Int]->[Int]
+listarazy3[]=[]
+listarazy3(x:xa)=(razy3 x):(listarazy3 xa)
+
+dlugosclista::[Int]->Int
+dlugosclista[]=0
+dlugosclista(x:t)=1+dlugosclista t
+
+listailoczyn::[Int]->Int
+listailoczyn[x]=x
+listailoczyn(x:t)=x*listailoczyn t
+
+fun::[Int]->Int
+fun[]=5
+fun(x:y)=x-fun y
+
+-- [10,7..2]=[10,7,4]
+-- fun[10,7,4]=10-fun[7,4]=10-(7-fun[4])=10-(7-(4-5)))=2
+-- reverse[1,2,3]->[3,2,1]
+
+ostatni::[Int]->Int
+ostatni xs=head(reverse xs)
+
+usunostatni::[Int]->[Int]
+usunostatni xs=reverse(tail(reverse xs))
+
+konkatenacja::[Int]->[Int]->[Int]
+konkatenacja xs ys=xs++ys
+-- rekurencyjna
+konkatenacja2 [] l2=l2
+konkatenacja2 (h:t) l2 =h:(konkatenacja t l2)
