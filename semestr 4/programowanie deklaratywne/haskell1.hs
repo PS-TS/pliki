@@ -142,4 +142,13 @@ mniejsze1 x = x-1
 kolejnemniejszeo1::[Int]->[Int]
 kolejnemniejszeo1 xs = map mniejsze1 xs
 
+listawiekszao2::[Int]->[Int]
+wiekszeo2 x = x+2
+
+-- listawiekszao2 xs = map wiekszeo2 xs
+
+-- listawiekszao2 [] = []
+-- listawiekszao2 (x:t) = (wiekszeo2 x):(listawiekszao2 t)
+
+-- listawiekszao2 xs = [x+2, x<-xs]
 
