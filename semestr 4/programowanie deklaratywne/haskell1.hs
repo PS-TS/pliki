@@ -138,7 +138,8 @@ konkatenacja2 (h:t) l2 =h:(konkatenacja t l2)
 listamniejsza1::[Int]->[Int]
 listamniejsza1 xs = [x-1|x<-xs]
 
-
-
+mniejsze1 x = x-1
+kolejnemniejszeo1::[Int]->[Int]
+kolejnemniejszeo1 xs = map mniejsze1 xs
 
 
