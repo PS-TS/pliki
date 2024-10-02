@@ -1,0 +1,54 @@
+body {
+    background-image: url('tlo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.menu {
+    width: 100%;
+    background-color: #333;
+}
+
+.menu td {
+    padding: 15px;
+    text-align: center;
+    background-color: #444;
+}
+
+.menu td a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.menu td:hover {
+    background-color: #555;
+}
+
+.text-format {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+img {
+    float: left;
+    margin: 0 15px 15px 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.highlight {
+    background-color: yellow;
+}
+
