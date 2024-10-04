@@ -1,0 +1,304 @@
+Wstęp do grafiki
+
+>> 1:2:10
+ans =
+
+   1   3   5   7   9
+
+>> tab = 123
+tab = 123
+>> tab = 1:3:10
+tab =
+
+    1    4    7   10
+
+>> tab(2:end-1)
+ans =
+
+   4   7
+
+>> tab(:)
+ans =
+
+    1
+    4
+    7
+   10
+
+>> mac = [11 12 13; 21 22 23]
+mac =
+
+   11   12   13
+   21   22   23
+
+>> mac(:,[2 3])
+ans =
+
+   12   13
+   22   23
+
+>> mac(:,[2 3]) = 9
+mac =
+
+   11    9    9
+   21    9    9
+
+>> mac(1,:)*2
+ans =
+
+   22   18   18
+
+>> mac(1,:)=mac{1,:}*2
+error: matrix cannot be indexed with {
+>> mac(1,:)=mac(1,:)*2
+mac =
+
+   22   18   18
+   21    9    9
+
+>> mac(1,:)=mac(1,:).*mac(1,:)
+mac =
+
+   484   324   324
+    21     9     9
+
+>> mac = [11 12 13; 21 22 23]
+mac =
+
+   11   12   13
+   21   22   23
+
+>> test
+iteracja
+   11
+   21
+iteracja
+   12
+   22
+iteracja
+   13
+   23
+>> mac>11
+ans =
+
+  0  1  1
+  1  1  1
+
+>> mac>11&mac<22
+ans =
+
+  0  1  1
+  1  0  0
+
+>> [mac>11&mac<22]
+ans =
+
+  0  1  1
+  1  0  0
+
+>> mac(mac>11&mac<22)
+ans =
+
+   21
+   12
+   13
+
+>> test
+iteracja
+   11
+   21
+iteracja
+   12
+   22
+iteracja
+   13
+   23
+>> mac(mac>11&mac<22) = mac(mac>11&mac<22)+100
+mac =
+
+    11   112   113
+   121    22    23
+
+>> tab
+tab =
+
+    1    4    7   10
+
+>> tab>5
+ans =
+
+  0  0  1  1
+
+>> tab(tab>5)
+ans =
+
+    7   10
+
+>> find(tab>5)
+ans =
+
+   3   4
+
+>> min(tab)
+ans = 1
+>> min(tab, 1)
+ans =
+
+   1   1   1   1
+
+>> min(mac)
+ans =
+
+   11   22   23
+
+>> min(mac, 1)
+ans =
+
+   1   1   1
+   1   1   1
+
+>> min(mac, [],1)
+ans =
+
+   11   22   23
+
+>> min(mac, [],2)
+ans =
+
+   11
+   22
+
+>> mac
+mac =
+
+    11   112   113
+   121    22    23
+
+>> clear
+>> test
+iteracja
+   11
+   21
+iteracja
+   12
+   22
+iteracja
+   13
+   23
+>> test
+iteracja
+   11
+   21
+iteracja
+   12
+   22
+iteracja
+   13
+   23
+>> test
+iteracja
+1
+iteracja
+2
+iteracja
+3
+iteracja
+4
+iteracja
+5
+iteracja
+6
+iteracja
+7
+iteracja
+8
+iteracja
+9
+iteracja
+10
+>> clear
+>> clear
+>> test
+iteracja
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+>> test
+iteracja
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+>> test
+iteracja
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+   10
+>> clear
+>> kom = {}
+kom = {}(0x0)
+>> kom{3} = (123)
+kom =
+{
+  [1,1] = [](0x0)
+  [1,2] = [](0x0)
+  [1,3] = 123
+}
+
+>> kom{3} = [123];
+>> kom{3} = [1 2 3];
+>> kom
+kom =
+{
+  [1,1] = [](0x0)
+  [1,2] = [](0x0)
+  [1,3] =
+
+     1   2   3
+
+}
+
+>> min(kom)
+error: min: wrong type argument 'cell'
+>> kom(3)
+ans =
+{
+  [1,1] =
+
+     1   2   3
+
+}
+
+>> kom{3}
+ans =
+
+   1   2   3
+
+>> kom{3} +1
+ans =
+
+   2   3   4
+
+>> kom(3) +1
+error: binary operator '+' not implemented for 'cell' by 'scalar' operations
+>>
