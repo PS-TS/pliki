@@ -952,3 +952,17 @@ hold on
 plot(x, -y. 'r')
 hold off
 clc
+
+xx=[-1;0.1;1];
+yy=[-10:1:10];
+for ix = 1:length(xx)
+  x=xx(ix)
+   for iy = 1:length(yy)
+     y=yy(iy);
+     mac(iy,ix) = sin(x*pi) .* sin(y/10);
+   endfor
+  end;
+  surfl(mac)
+
+im8 = imread('rzeczka.jpg');
+im = double( imread('rzeczka.jpg') );
