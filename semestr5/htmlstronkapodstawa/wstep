@@ -969,3 +969,11 @@ im = double( imread('rzeczka.jpg') );
 im ( round(end/2), :, : )=0;
 imshow(im/255)
 imshow(uint(im))
+
+Ćwiczenie 1
+im = double( imread('Downloads/rzeczka.jpg') );
+imshow(im/255)
+>> im ( :, [10:50], 1 )= 255;
+>> im ( :, [10:50], 2 )= 255;
+>> im ( :, [10:50], 3 )= 0;
+>> imshow(im/255)
