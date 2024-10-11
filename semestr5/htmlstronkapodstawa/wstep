@@ -984,4 +984,5 @@ im2 = im( : , end:-1:1 , : );
 >> im3 = [im im2];
 >> imshow(im3/255)
 
-
+Ćwiczenie 3
+im2 = 255-im( : , : , : );
