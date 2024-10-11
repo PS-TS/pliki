@@ -977,3 +977,11 @@ imshow(im/255)
 >> im ( :, [10:50], 2 )= 255;
 >> im ( :, [10:50], 3 )= 0;
 >> imshow(im/255)
+
+Ćwiczenie 2
+im2 = im( : , end:-1:1 , : );
+>> imshow(im2/255)
+>> im3 = [im im2];
+>> imshow(im3/255)
+
+
