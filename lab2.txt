@@ -1,0 +1,96 @@
+import aiohttp
+import asyncio
+
+async def fetch(url: str) -> str:
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            return await response.json()
+
+
+async def main() -> None:
+    url = "https://670bef0e7e5a228ec1cf1824.mockapi.io/api/v1/user"
+    users = await fetch(url)
+
+    print(users)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+/////////////////////////////////////////////////////////////
+import aiohttp
+import asyncio
+
+async def add_user(url: str, header: dict, body: dict) -> str:
+    async with aiohttp.ClientSession(headers=header) as session:
+        async with session.post(url, data=body) as response:
+            return await response.json()
+
+
+async def main() -> None:
+    url = "https://670bef0e7e5a228ec1cf1824.mockapi.io/api/v1/user"
+    header = {"Token": "Bearer SOME_CHARS"}
+    body = {
+        "name": "Janusz Badziewiak",
+        "avatar": "https://naukawpolsce.pl/sites/default/files/styles/strona_glowna_slider_750x420/public/202005/portretProboscis_monkey_%28Nasalis_larvatus%29_male_head_0.jpg.webp?itok=HXkRpCtR",
+    }
+
+    users = await add_user(url=url, header=header, body=body)
+
+    print(users)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+  //////////////////////////////////////////////////////
+import aiohttp
+import asyncio
+
+async def fetch(url: str) -> str:
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            return await response.json()
+
+
+async def download(link: str) -> None:
+    url = link
+    users = await fetch(url)
+
+    print(users)
+
+
+async def main() -> None:
+    await asyncio.gather(download("https://670bef0e7e5a228ec1cf1824.mockapi.io/api/v1/user"),
+                         download("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"),
+                         download("https://pokeapi.co/api/v2/"),
+                         download("https://api.chess.com/pub/player/hikaru"),
+                         download("http://b8c40s8.143.198.70.30.sslip.io/api/PlayerDataAdvancedPlayoffs/name/Kyrie Irving")
+                         )
+
+if __name__ == "__main__":
+    asyncio.run(main())
+///////////////////////////////////////////////////////////
+from email.headerregistry import DateHeader
+from xmlrpc.client import DateTime
+
+import aiohttp
+import asyncio
+
+async def fetch(url: str) -> str:
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            return await response.json()
+
+
+async def main() -> None:
+    url = "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
+
+    #forsearch = {"time": "2024-10-15T19:00"}
+    weather = await fetch(url=url)
+    print("czas: " + str(weather["hourly"]["time"][20]))
+    print("temp: " + str(weather["hourly"]["temperature_2m"][20]))
+    print("wilg: " + str(weather["hourly"]["relative_humidity_2m"][20]))
+    print("wiatr: " + str(weather["hourly"]["wind_speed_10m"][20]))
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
