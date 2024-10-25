@@ -1,0 +1,27 @@
+zdjecie = double(imread("Downloads/rzeczka2.png"));
+zdjecie2 = (zdjecie./255).^(1/0.7);
+imshow(zdjecie2);
+
+clear; clc; clf;
+zdjecie = double(imread("Downloads/rzeczka2.png"));
+wspol=-50;
+function zdjecie = zmienjasnosc(zdjecie,wspol)
+  zdjecie = zdjecie.+wspol;
+endfunction;
+
+function zdjecie = przytnijzakres(zdjecie)
+  szer = size(zdjecie,2);
+  wys = size(zdjecie,1);
+  for i=1:szer
+    for j=1:wys
+      if zdjecie(j,i,:)>255
+        zdjecie(j,i,:)=255;
+      endif;
+      if zdjecie(j,i,:)<0
+        zdjecie(j,i,:)=0;
+      endif;
+  endfor;
+  endfor;
+endfunction;
+
+imshow(przytnijzakres(zmienjasnosc(zdjecie,wspol))/255);
