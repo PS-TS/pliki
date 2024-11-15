@@ -25,3 +25,41 @@ function zdjecie = przytnijzakres(zdjecie)
 endfunction;
 
 imshow(przytnijzakres(zmienjasnosc(zdjecie,wspol))/255);
+
+//////////////////////////////////////////////////////////////////////////////////////////
+clear; clc; clf;
+zdjecie = double(imread("Downloads/rzeczkam.jpg"));
+zdjecie=zdjecie/255;
+
+  szer = size(zdjecie,2);
+  wys = size(zdjecie,1);
+  for i=1:szer
+    for j=1:wys
+      minRGB=min(zdjecie(j,i,:));
+      maxRGB=max(zdjecie(j,i,:));
+      
+      for k=1:3
+        if (zdjecie(j,i,k)==maxRGB)
+          number = k;
+        endif
+      endfor
+      
+      Chroma=maxRGB-minRGB;
+      if (Chroma<= 0.001)
+        Htemp=0;
+      elseif (numer=1)
+        Htemp = mod((zdjecie(j,i,2)-zdjecie(j,i,3))/Chroma,6);
+      elseif (numer=2)
+        Htemp = ((zdjecie(j,i,3)-zdjecie(j,i,1))/Chroma)+2;
+      elseif (numer=3)
+        Htemp = ((zdjecie(j,i,1)-zdjecie(j,i,2))/Chroma)+4;
+      endif
+      H=Htemp*60;
+      L=((maxRGB+minRGB)/2);
+      if (L<=0.001||L>=0.999)
+        S=0;
+      else
+        S=(Chroma/(1-abs((2*L)-1)));
+      endif
+  endfor;
+  endfor;
