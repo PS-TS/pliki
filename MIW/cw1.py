@@ -17,3 +17,5 @@ if __name__ == '__main__':
                     break
             if test:
                 print(f"Rzad {z+1} Kolumna {y+1} = {wartosc} Wynik {decyzja}")
+
+// dodać ignorowane wartości oraz drugi stopień
